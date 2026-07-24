@@ -1,0 +1,83 @@
+openapi: 3.1.0
+info:
+  title: Thatch for Platforms Deductions Employer onboarding sessions API
+  version: v1
+  description: Thatch for Platforms is a set of REST APIs and embeddable JavaScript components that let partners bring ICHRA (Individual Coverage Health Reimbursement Arrangement) benefits to their customers. Partners onboard employers, manage employees, run the employer onboarding flow through an embedded iframe, track enrollments and members, model pay schedules, and retrieve payroll deductions. Access is limited to approved partners; contact platforms@thatch.com to set up an account and generate an API key in the Thatch dashboard.
+  contact:
+    name: Thatch for Platforms
+    email: platforms@thatch.com
+    url: https://docs.thatch.com/
+  x-apisjson-generated: '2026-07-21'
+  x-apisjson-method: generated
+  x-apisjson-source: https://docs.thatch.com/api/
+servers:
+- url: https://partners.thatchcloud.com/api/partners/v1
+  description: Production
+security:
+- Bearer: []
+tags:
+- name: Employer onboarding sessions
+  description: Employers onboard into a platform through employer onboarding sessions. After creating a session, provide the claim_url to the onboarding iframe in your app.
+paths:
+  /employer_onboarding_sessions:
+    post:
+      tags:
+      - Employer onboarding sessions
+      operationId: createEmployerOnboardingSession
+      summary: Create an employer onboarding session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - employer
+              properties:
+                employer:
+                  type: string
+                  description: ID of the employer to create an onboarding session for
+                email:
+                  type: string
+                  description: Email address of the admin to create the session for. When provided, a User and EmployerAdmin are created (or found) for this email.
+                first_name:
+                  type: string
+                  description: First name of the admin (used when creating a new EmployerAdmin via email)
+                last_name:
+                  type: string
+                  description: Last name of the admin (used when creating a new EmployerAdmin via email)
+      responses:
+        '201':
+          description: Create an employer onboarding session
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployerOnboardingSession'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    EmployerOnboardingSession:
+      type: object
+      properties:
+        employer:
+          type: string
+          example: empl_01j2j3smtwx656y2tbqm7ty6gr
+        employer_admin_email:
+          type: string
+          example: admin@example.com
+        claim_url:
+          type: string
+          description: URL to provide to the onboarding iframe.
+          example: https://app.thatch.com/employer_onboarding_sessions/SR86rPsHKWp02FivyQ6Z4hgUN0VBz6RR/claim
+        expires_at:
+          type: string
+          format: date-time
+  responses:
+    Unauthorized:
+      description: Authentication failed or API key missing/invalid.
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: bearer
+      description: 'All requests are authenticated with your API key using Bearer token authentication. Include the header `Authorization: Bearer <YOUR_API_KEY>`. Generate an API key in the Thatch dashboard.'

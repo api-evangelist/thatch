@@ -1,0 +1,389 @@
+openapi: 3.1.0
+info:
+  title: Thatch for Platforms Deductions Employees API
+  version: v1
+  description: Thatch for Platforms is a set of REST APIs and embeddable JavaScript components that let partners bring ICHRA (Individual Coverage Health Reimbursement Arrangement) benefits to their customers. Partners onboard employers, manage employees, run the employer onboarding flow through an embedded iframe, track enrollments and members, model pay schedules, and retrieve payroll deductions. Access is limited to approved partners; contact platforms@thatch.com to set up an account and generate an API key in the Thatch dashboard.
+  contact:
+    name: Thatch for Platforms
+    email: platforms@thatch.com
+    url: https://docs.thatch.com/
+  x-apisjson-generated: '2026-07-21'
+  x-apisjson-method: generated
+  x-apisjson-source: https://docs.thatch.com/api/
+servers:
+- url: https://partners.thatchcloud.com/api/partners/v1
+  description: Production
+security:
+- Bearer: []
+tags:
+- name: Employees
+  description: Employees work for employers, both of which are managed by partners. Employees enrolled in plans are also represented in Thatch as member objects.
+paths:
+  /employees:
+    post:
+      tags:
+      - Employees
+      operationId: createEmployee
+      summary: Create an employee
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeCreate'
+      responses:
+        '201':
+          description: Create an employee
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    get:
+      tags:
+      - Employees
+      operationId: listEmployees
+      summary: List employees
+      parameters:
+      - name: employer_id
+        in: query
+        description: ID of the employee's employer
+        schema:
+          type: string
+      - $ref: '#/components/parameters/PageNumber'
+      - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: List employees
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Employee'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /employees/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Employee ID
+      schema:
+        type: string
+    get:
+      tags:
+      - Employees
+      operationId: getEmployee
+      summary: Get an employee
+      responses:
+        '200':
+          description: Get an employee
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      tags:
+      - Employees
+      operationId: updateEmployee
+      summary: Update an employee
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeUpdate'
+      responses:
+        '200':
+          description: Update an employee
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    EmployeeCreate:
+      type: object
+      required:
+      - employer_id
+      - first_name
+      - last_name
+      - date_of_birth
+      - zip
+      properties:
+        employer_id:
+          type: string
+          description: Employer ID
+        first_name:
+          type: string
+          description: Employee's first name
+        last_name:
+          type: string
+          description: Employee's last name
+        date_of_birth:
+          type: string
+          format: date
+          description: Employee's date of birth in YYYY-MM-DD format
+        zip:
+          type: string
+          description: Employee's five-digit ZIP code
+        personal_email:
+          type: string
+          description: Employee's personal email address
+        work_email:
+          type: string
+          description: Employee's work email address
+        employment_subtype:
+          type: string
+          enum:
+          - part_time
+          - full_time
+          description: Employee's employment subtype
+        pay_type:
+          type: string
+          enum:
+          - yearly
+          - quarterly
+          - monthly
+          - semi_monthly
+          - bi_weekly
+          - weekly
+          - daily
+          - hourly
+          - fixed
+          - salary
+          description: Employee's pay type
+        pay_rate:
+          type: number
+          format: float
+          description: Pay rate in case the employee is paid hourly
+        start_date:
+          type: string
+          format: date
+          description: Employee's start date in YYYY-MM-DD format
+        end_date:
+          type: string
+          format: date
+          description: Employee's end date in YYYY-MM-DD format
+        dependents:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dependent'
+        pay_schedules:
+          type: array
+          description: Employee's assigned pay schedules
+          items:
+            $ref: '#/components/schemas/EmployeePayScheduleRef'
+        native_employee_id:
+          type: string
+          description: Employee's identifier in the partner's payroll system. Used for deduplication when employees are created via census upload and later via API.
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+    EmployeeUpdate:
+      type: object
+      properties:
+        personal_email:
+          type: string
+        work_email:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        employment_subtype:
+          type: string
+          enum:
+          - part_time
+          - full_time
+        pay_type:
+          type: string
+          enum:
+          - yearly
+          - quarterly
+          - monthly
+          - semi_monthly
+          - bi_weekly
+          - weekly
+          - daily
+          - hourly
+          - fixed
+          - salary
+        pay_rate:
+          type: number
+          format: float
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+        date_of_birth:
+          type: string
+          format: date
+        zip:
+          type: string
+        dependents:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dependent'
+        pay_schedules:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmployeePayScheduleRef'
+        native_employee_id:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+    Dependent:
+      type: object
+      properties:
+        relationship:
+          type: string
+          example: spouse
+        date_of_birth:
+          type: string
+          format: date
+    EmployeePayScheduleRef:
+      type: object
+      properties:
+        id:
+          type: string
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+    EnrollmentEvent:
+      type: object
+      properties:
+        type:
+          type: string
+          example: open_enrollment
+        subtype:
+          type: string
+          example: renewal
+        plan_year:
+          type: integer
+          example: 2024
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+        status:
+          type: string
+          example: active
+    Employee:
+      type: object
+      properties:
+        id:
+          type: string
+          example: employee_01j85kpd8yxkabyrm83d3h2ya3
+        employer_id:
+          type: string
+          example: empl_01j2j3smtwx656y2tbqm7ty6gr
+        personal_email:
+          type: string
+        work_email:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        enrollment_events:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnrollmentEvent'
+        pay_schedules:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmployeePayScheduleRef'
+        member_id:
+          type: string
+          example: mbr_01j85kpd8yxkabyrm83d3h2ya3
+        invite_link:
+          type: string
+          description: Member onboarding invite link served from app.thatch.com
+        date_of_birth:
+          type: string
+          format: date
+        zip:
+          type: string
+        dependents:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dependent'
+        native_employee_id:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+    Metadata:
+      type: object
+      description: Set of key-value pairs that you can attach to an API resource for storing additional structured information. Individual keys can be unset by posting an empty string value; all keys can be unset by posting an empty object.
+      additionalProperties:
+        type: string
+    Pagination:
+      type: object
+      properties:
+        total_records:
+          type: integer
+          example: 25
+        current_page:
+          type: integer
+          example: 1
+        total_pages:
+          type: integer
+          example: 3
+        next_page:
+          type: integer
+          example: 2
+        prev_page:
+          type: integer
+          example: 0
+  parameters:
+    PageNumber:
+      name: page[number]
+      in: query
+      description: Page number
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        default: 1
+    PageSize:
+      name: page[size]
+      in: query
+      description: Number of items per page. Must be between 1 and 1,000 (inclusive). Defaults to 20.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 1000
+        default: 20
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+    Unauthorized:
+      description: Authentication failed or API key missing/invalid.
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: bearer
+      description: 'All requests are authenticated with your API key using Bearer token authentication. Include the header `Authorization: Bearer <YOUR_API_KEY>`. Generate an API key in the Thatch dashboard.'

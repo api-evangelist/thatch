@@ -1,0 +1,160 @@
+openapi: 3.1.0
+info:
+  title: Thatch for Platforms Deductions Members API
+  version: v1
+  description: Thatch for Platforms is a set of REST APIs and embeddable JavaScript components that let partners bring ICHRA (Individual Coverage Health Reimbursement Arrangement) benefits to their customers. Partners onboard employers, manage employees, run the employer onboarding flow through an embedded iframe, track enrollments and members, model pay schedules, and retrieve payroll deductions. Access is limited to approved partners; contact platforms@thatch.com to set up an account and generate an API key in the Thatch dashboard.
+  contact:
+    name: Thatch for Platforms
+    email: platforms@thatch.com
+    url: https://docs.thatch.com/
+  x-apisjson-generated: '2026-07-21'
+  x-apisjson-method: generated
+  x-apisjson-source: https://docs.thatch.com/api/
+servers:
+- url: https://partners.thatchcloud.com/api/partners/v1
+  description: Production
+security:
+- Bearer: []
+tags:
+- name: Members
+  description: Members represent employees enrolled in plans.
+paths:
+  /members:
+    get:
+      tags:
+      - Members
+      operationId: listMembers
+      summary: List members
+      parameters:
+      - $ref: '#/components/parameters/PageNumber'
+      - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: List members
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Member'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /members/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Member ID
+      schema:
+        type: string
+    get:
+      tags:
+      - Members
+      operationId: getMember
+      summary: Get a member
+      responses:
+        '200':
+          description: Get a member
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Member:
+      type: object
+      properties:
+        id:
+          type: string
+          example: mbr_01j85kpd8yxkabyrm83d3h2ya3
+        employee_id:
+          type: string
+          example: employee_01j7h53r7gpd0q0wtx4pcfcska
+        first_name:
+          type: string
+        last_name:
+          type: string
+        address_line1:
+          type: string
+        address_line2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        date_of_birth:
+          type: string
+          format: date
+        allowance:
+          $ref: '#/components/schemas/Money'
+        balance:
+          $ref: '#/components/schemas/Money'
+    Money:
+      type: object
+      description: A monetary amount in minor units with an ISO 4217 currency code.
+      properties:
+        amount:
+          type: integer
+          description: Amount in the smallest currency unit (e.g. cents).
+        currency_code:
+          type: string
+          example: USD
+    Pagination:
+      type: object
+      properties:
+        total_records:
+          type: integer
+          example: 25
+        current_page:
+          type: integer
+          example: 1
+        total_pages:
+          type: integer
+          example: 3
+        next_page:
+          type: integer
+          example: 2
+        prev_page:
+          type: integer
+          example: 0
+  parameters:
+    PageNumber:
+      name: page[number]
+      in: query
+      description: Page number
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        default: 1
+    PageSize:
+      name: page[size]
+      in: query
+      description: Number of items per page. Must be between 1 and 1,000 (inclusive). Defaults to 20.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 1000
+        default: 20
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+    Unauthorized:
+      description: Authentication failed or API key missing/invalid.
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: bearer
+      description: 'All requests are authenticated with your API key using Bearer token authentication. Include the header `Authorization: Bearer <YOUR_API_KEY>`. Generate an API key in the Thatch dashboard.'

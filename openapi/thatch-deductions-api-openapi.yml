@@ -1,0 +1,158 @@
+openapi: 3.1.0
+info:
+  title: Thatch for Platforms Deductions API
+  version: v1
+  description: Thatch for Platforms is a set of REST APIs and embeddable JavaScript components that let partners bring ICHRA (Individual Coverage Health Reimbursement Arrangement) benefits to their customers. Partners onboard employers, manage employees, run the employer onboarding flow through an embedded iframe, track enrollments and members, model pay schedules, and retrieve payroll deductions. Access is limited to approved partners; contact platforms@thatch.com to set up an account and generate an API key in the Thatch dashboard.
+  contact:
+    name: Thatch for Platforms
+    email: platforms@thatch.com
+    url: https://docs.thatch.com/
+  x-apisjson-generated: '2026-07-21'
+  x-apisjson-method: generated
+  x-apisjson-source: https://docs.thatch.com/api/
+servers:
+- url: https://partners.thatchcloud.com/api/partners/v1
+  description: Production
+security:
+- Bearer: []
+tags:
+- name: Deductions
+  description: Payroll deductions track the costs of plan premiums to employees.
+paths:
+  /deductions:
+    get:
+      tags:
+      - Deductions
+      operationId: listDeductions
+      summary: List employee payroll deductions
+      parameters:
+      - name: employer_id
+        in: query
+        required: true
+        description: Employer ID
+        schema:
+          type: string
+        example: empl_01j9w59xh2p5d03z0zxgcv2vag
+      - $ref: '#/components/parameters/PageNumber'
+      - $ref: '#/components/parameters/PageSize'
+      - name: periods[start_after]
+        in: query
+        description: Periods with pay date on or after date, in ISO 8601 format
+        schema:
+          type: string
+          format: date
+        example: '2024-01-01'
+      - name: periods[end_before]
+        in: query
+        description: Periods with pay date on or before date, in ISO 8601 format
+        schema:
+          type: string
+          format: date
+        example: '2024-01-01'
+      responses:
+        '200':
+          description: List employee payroll deductions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/EmployeeDeductions'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  parameters:
+    PageNumber:
+      name: page[number]
+      in: query
+      description: Page number
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        default: 1
+    PageSize:
+      name: page[size]
+      in: query
+      description: Number of items per page. Must be between 1 and 1,000 (inclusive). Defaults to 20.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 1000
+        default: 20
+  responses:
+    Unauthorized:
+      description: Authentication failed or API key missing/invalid.
+  schemas:
+    DeductionPeriod:
+      type: object
+      properties:
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+        deductions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Deduction'
+    Money:
+      type: object
+      description: A monetary amount in minor units with an ISO 4217 currency code.
+      properties:
+        amount:
+          type: integer
+          description: Amount in the smallest currency unit (e.g. cents).
+        currency_code:
+          type: string
+          example: USD
+    Deduction:
+      type: object
+      properties:
+        amount:
+          $ref: '#/components/schemas/Money'
+        type:
+          type: string
+          example: s125_pretax
+        applied_correction:
+          $ref: '#/components/schemas/Money'
+    Pagination:
+      type: object
+      properties:
+        total_records:
+          type: integer
+          example: 25
+        current_page:
+          type: integer
+          example: 1
+        total_pages:
+          type: integer
+          example: 3
+        next_page:
+          type: integer
+          example: 2
+        prev_page:
+          type: integer
+          example: 0
+    EmployeeDeductions:
+      type: object
+      properties:
+        employee_id:
+          type: string
+          example: employee_01j85kpd8yxkabyrm83d3h2ya3
+        periods:
+          type: array
+          items:
+            $ref: '#/components/schemas/DeductionPeriod'
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: bearer
+      description: 'All requests are authenticated with your API key using Bearer token authentication. Include the header `Authorization: Bearer <YOUR_API_KEY>`. Generate an API key in the Thatch dashboard.'

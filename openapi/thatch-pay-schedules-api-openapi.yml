@@ -1,0 +1,286 @@
+openapi: 3.1.0
+info:
+  title: Thatch for Platforms Deductions Pay Schedules API
+  version: v1
+  description: Thatch for Platforms is a set of REST APIs and embeddable JavaScript components that let partners bring ICHRA (Individual Coverage Health Reimbursement Arrangement) benefits to their customers. Partners onboard employers, manage employees, run the employer onboarding flow through an embedded iframe, track enrollments and members, model pay schedules, and retrieve payroll deductions. Access is limited to approved partners; contact platforms@thatch.com to set up an account and generate an API key in the Thatch dashboard.
+  contact:
+    name: Thatch for Platforms
+    email: platforms@thatch.com
+    url: https://docs.thatch.com/
+  x-apisjson-generated: '2026-07-21'
+  x-apisjson-method: generated
+  x-apisjson-source: https://docs.thatch.com/api/
+servers:
+- url: https://partners.thatchcloud.com/api/partners/v1
+  description: Production
+security:
+- Bearer: []
+tags:
+- name: Pay Schedules
+  description: Pay schedules model the cadence of employee paychecks for the purpose of deduction calculations.
+paths:
+  /employers/{employer_id}/pay_schedules:
+    parameters:
+    - name: employer_id
+      in: path
+      required: true
+      schema:
+        type: string
+    post:
+      tags:
+      - Pay Schedules
+      operationId: createPaySchedule
+      summary: Create a pay schedule
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PayScheduleCreate'
+      responses:
+        '201':
+          description: Create a pay schedule
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaySchedule'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    get:
+      tags:
+      - Pay Schedules
+      operationId: listPaySchedules
+      summary: List pay schedules for an employer
+      parameters:
+      - name: include_deactivated
+        in: query
+        description: Include deactivated pay schedules
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: List pay schedules for an employer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PaySchedule'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /employers/{employer_id}/pay_schedules/{pay_schedule_id}:
+    parameters:
+    - name: employer_id
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: pay_schedule_id
+      in: path
+      required: true
+      description: Pay schedule ID
+      schema:
+        type: string
+    get:
+      tags:
+      - Pay Schedules
+      operationId: getPaySchedule
+      summary: Get a specific pay schedule
+      responses:
+        '200':
+          description: Get a specific pay schedule
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaySchedule'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      tags:
+      - Pay Schedules
+      operationId: updatePaySchedule
+      summary: Update a pay schedule
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PayScheduleUpdate'
+      responses:
+        '200':
+          description: Update a pay schedule
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaySchedule'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags:
+      - Pay Schedules
+      operationId: deactivatePaySchedule
+      summary: Deactivate a pay schedule
+      responses:
+        '204':
+          description: Successfully deactivated pay schedule
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+    Unauthorized:
+      description: Authentication failed or API key missing/invalid.
+  schemas:
+    PayScheduleCreate:
+      type: object
+      required:
+      - bank_closure_strategy
+      - frequency
+      - name
+      properties:
+        bank_closure_strategy:
+          type: string
+          enum:
+          - before
+          - after
+          - closest
+          - ignore
+          description: Strategy for handling bank closures
+        frequency:
+          type: string
+          enum:
+          - monthly
+          - semi_monthly
+          - bi_weekly
+          - weekly
+          description: Pay frequency
+        name:
+          type: string
+          description: Readable name for the pay schedule
+        first_pay_date:
+          type: string
+          format: date
+          description: First pay date of the schedule
+        second_pay_date:
+          type: string
+          format: date
+          description: Second pay date of the schedule (only required for semi-monthly schedules)
+        start_date:
+          type: string
+          description: Start date for the pay schedule (defaults to employer's earliest coverage start date on creation)
+        end_date:
+          type: string
+          description: End date for the pay schedule
+        reference_pay_date:
+          type: string
+          format: date
+          deprecated: true
+          description: Deprecated - use first_pay_date instead
+        first_day:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 31
+          deprecated: true
+          description: Deprecated - use first_pay_date instead
+        second_day:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 31
+          deprecated: true
+          description: Deprecated - use second_pay_date instead
+    PaySchedule:
+      type: object
+      properties:
+        id:
+          type: string
+          example: paysch_1234
+        name:
+          type: string
+          example: Bi-Weekly Payroll
+        reference_pay_date:
+          type: string
+          format: date
+          deprecated: true
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+        frequency:
+          type: string
+          example: bi_weekly
+        first_day:
+          type: integer
+          deprecated: true
+        second_day:
+          type: integer
+          deprecated: true
+        bank_closure_strategy:
+          type: string
+          example: before
+        remote_id:
+          type: string
+          example: remote_123
+        active:
+          type: boolean
+    PayScheduleUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        frequency:
+          type: string
+          enum:
+          - monthly
+          - semi_monthly
+          - bi_weekly
+          - weekly
+        bank_closure_strategy:
+          type: string
+          enum:
+          - before
+          - after
+          - closest
+          - ignore
+        first_pay_date:
+          type: string
+          format: date
+        second_pay_date:
+          type: string
+          format: date
+        start_date:
+          type: string
+        end_date:
+          type: string
+        reference_pay_date:
+          type: string
+          format: date
+          deprecated: true
+        first_day:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 31
+          deprecated: true
+        second_day:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 31
+          deprecated: true
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: bearer
+      description: 'All requests are authenticated with your API key using Bearer token authentication. Include the header `Authorization: Bearer <YOUR_API_KEY>`. Generate an API key in the Thatch dashboard.'
