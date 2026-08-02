@@ -1,0 +1,29 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.thatch.com/
+summary: >-
+  Thatch for Platforms pairs its REST APIs with embeddable surfaces that partners
+  render inside their own product. These are hosted iframe/link experiences served
+  from Thatch origins, distinct from server-side SDKs.
+components:
+  - family: Employer onboarding
+    kind: hosted-iframe
+    element: iframe
+    origin: https://app.thatch.com
+    source: claim_url returned by POST /employer_onboarding_sessions
+    description: >-
+      Full employer onboarding flow (account creation, bank connection, employee
+      invitations, allowance finalization) handled inside a Thatch-hosted iframe.
+      On completion the iframe posts a window message {type:"THATCH_REDIRECT",
+      payload:{redirectUrl}} to the parent; the parent should validate the origin
+      (https://app.thatch.com) and redirect.
+    events:
+      - name: THATCH_REDIRECT
+        payload: '{ redirectUrl }'
+  - family: Member onboarding
+    kind: hosted-link
+    origin: https://app.thatch.com
+    source: invite_link on the Employee object
+    description: >-
+      Employees complete plan selection and enrollment via a Thatch-hosted member
+      onboarding link (invite_link, e.g. app.thatch.com/member/onboarding/welcome).

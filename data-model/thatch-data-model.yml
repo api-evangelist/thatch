@@ -1,0 +1,86 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/thatch-partners-openapi.yml
+summary: >-
+  Entity-relationship graph for the Thatch for Platforms API, derived from the
+  OpenAPI schemas and id-reference fields. Partners onboard Employers; Employers
+  have Employees and Pay Schedules; Employees become Members when enrolled;
+  Members have Enrollments; Deductions roll up per Employee across pay periods.
+entities:
+  - name: Employer
+    id_prefix: empl_
+    description: A business onboarded into Thatch by a partner platform.
+    key_fields: [id, onboarding_status, name, business_type, ein, industry, pricing, lifecycle_events, pay_schedules]
+  - name: EmployerOnboardingSession
+    id_prefix: (opaque claim token)
+    description: A short-lived session that yields a claim_url for the onboarding iframe.
+    key_fields: [employer, employer_admin_email, claim_url, expires_at]
+  - name: Employee
+    id_prefix: employee_
+    description: A worker at an employer; carries pay data, dependents, and a member link once enrolled.
+    key_fields: [id, employer_id, first_name, last_name, date_of_birth, zip, member_id, invite_link, pay_schedules, enrollment_events]
+  - name: Member
+    id_prefix: mbr_
+    description: The representation of an enrolled employee, carrying allowance and balance.
+    key_fields: [id, employee_id, allowance, balance]
+  - name: Enrollment
+    id_prefix: enrlmt_
+    description: A member's coverage in a specific plan, with status lifecycle and premium.
+    key_fields: [id, member_id, status, plan, plan_id, premium, broker, enrollment_coverages, coverage_types]
+  - name: Plan
+    id_prefix: mdpln_
+    description: A medical plan a member enrolls in (embedded within enrollment).
+    key_fields: [id, name, carrier_name, hsa_eligible, sbc_url]
+  - name: PaySchedule
+    id_prefix: paysch_
+    description: The cadence of employee paychecks, used to compute deductions.
+    key_fields: [id, employer_id, frequency, bank_closure_strategy, first_pay_date, active]
+  - name: Deduction
+    id_prefix: (none; grouped by employee/period)
+    description: Payroll deduction amounts owed per employee per pay period.
+    key_fields: [employee_id, periods, amount, type, applied_correction]
+relationships:
+  - from: Employer
+    to: Employee
+    type: has_many
+    via: employer_id
+  - from: Employer
+    to: PaySchedule
+    type: has_many
+    via: employer_id (path scope)
+  - from: Employer
+    to: EmployerOnboardingSession
+    type: has_many
+    via: employer
+  - from: Employee
+    to: Employer
+    type: belongs_to
+    via: employer_id
+  - from: Employee
+    to: Member
+    type: has_one
+    via: member_id
+  - from: Employee
+    to: PaySchedule
+    type: has_many
+    via: pay_schedules[].id
+  - from: Member
+    to: Employee
+    type: belongs_to
+    via: employee_id
+  - from: Member
+    to: Enrollment
+    type: has_many
+    via: member_id
+  - from: Enrollment
+    to: Member
+    type: belongs_to
+    via: member_id
+  - from: Enrollment
+    to: Plan
+    type: has_one
+    via: plan_id
+  - from: Deduction
+    to: Employee
+    type: belongs_to
+    via: employee_id

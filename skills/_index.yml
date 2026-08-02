@@ -1,0 +1,7 @@
+generated: '2026-07-21'
+method: generated
+skills:
+  - file: thatch-onboard-employer.md
+    name: Onboard an employer onto Thatch ICHRA benefits
+    api: openapi/thatch-partners-openapi.yml
+    operations: [createEmployer, createEmployee, createEmployerOnboardingSession, createPaySchedule, listEnrollments, listDeductions]

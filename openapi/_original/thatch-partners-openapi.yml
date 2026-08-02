@@ -1,0 +1,804 @@
+openapi: 3.1.0
+info:
+  title: Thatch for Platforms API
+  version: v1
+  description: >-
+    Thatch for Platforms is a set of REST APIs and embeddable JavaScript
+    components that let partners bring ICHRA (Individual Coverage Health
+    Reimbursement Arrangement) benefits to their customers. Partners onboard
+    employers, manage employees, run the employer onboarding flow through an
+    embedded iframe, track enrollments and members, model pay schedules, and
+    retrieve payroll deductions. Access is limited to approved partners; contact
+    platforms@thatch.com to set up an account and generate an API key in the
+    Thatch dashboard.
+  contact:
+    name: Thatch for Platforms
+    email: platforms@thatch.com
+    url: https://docs.thatch.com/
+  x-apisjson-generated: '2026-07-21'
+  x-apisjson-method: generated
+  x-apisjson-source: https://docs.thatch.com/api/
+servers:
+  - url: https://partners.thatchcloud.com/api/partners/v1
+    description: Production
+tags:
+  - name: Deductions
+    description: Payroll deductions track the costs of plan premiums to employees.
+  - name: Employees
+    description: >-
+      Employees work for employers, both of which are managed by partners.
+      Employees enrolled in plans are also represented in Thatch as member
+      objects.
+  - name: Employer onboarding sessions
+    description: >-
+      Employers onboard into a platform through employer onboarding sessions.
+      After creating a session, provide the claim_url to the onboarding iframe
+      in your app.
+  - name: Employers
+    description: Platforms onboard employers into Thatch, and have employees enrolled in plans.
+  - name: Enrollments
+    description: Enrollments use member objects to track employee coverage status.
+  - name: Members
+    description: Members represent employees enrolled in plans.
+  - name: Pay Schedules
+    description: >-
+      Pay schedules model the cadence of employee paychecks for the purpose of
+      deduction calculations.
+security:
+  - Bearer: []
+paths:
+  /deductions:
+    get:
+      tags: [Deductions]
+      operationId: listDeductions
+      summary: List employee payroll deductions
+      parameters:
+        - name: employer_id
+          in: query
+          required: true
+          description: Employer ID
+          schema: { type: string }
+          example: empl_01j9w59xh2p5d03z0zxgcv2vag
+        - { $ref: '#/components/parameters/PageNumber' }
+        - { $ref: '#/components/parameters/PageSize' }
+        - name: periods[start_after]
+          in: query
+          description: Periods with pay date on or after date, in ISO 8601 format
+          schema: { type: string, format: date }
+          example: '2024-01-01'
+        - name: periods[end_before]
+          in: query
+          description: Periods with pay date on or before date, in ISO 8601 format
+          schema: { type: string, format: date }
+          example: '2024-01-01'
+      responses:
+        '200':
+          description: List employee payroll deductions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items: { $ref: '#/components/schemas/EmployeeDeductions' }
+                  pagination: { $ref: '#/components/schemas/Pagination' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /employees:
+    post:
+      tags: [Employees]
+      operationId: createEmployee
+      summary: Create an employee
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/EmployeeCreate' }
+      responses:
+        '201':
+          description: Create an employee
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Employee' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    get:
+      tags: [Employees]
+      operationId: listEmployees
+      summary: List employees
+      parameters:
+        - name: employer_id
+          in: query
+          description: ID of the employee's employer
+          schema: { type: string }
+        - { $ref: '#/components/parameters/PageNumber' }
+        - { $ref: '#/components/parameters/PageSize' }
+      responses:
+        '200':
+          description: List employees
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items: { $ref: '#/components/schemas/Employee' }
+                  pagination: { $ref: '#/components/schemas/Pagination' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /employees/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Employee ID
+        schema: { type: string }
+    get:
+      tags: [Employees]
+      operationId: getEmployee
+      summary: Get an employee
+      responses:
+        '200':
+          description: Get an employee
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Employee' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { $ref: '#/components/responses/NotFound' }
+    patch:
+      tags: [Employees]
+      operationId: updateEmployee
+      summary: Update an employee
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/EmployeeUpdate' }
+      responses:
+        '200':
+          description: Update an employee
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Employee' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /employer_onboarding_sessions:
+    post:
+      tags: [Employer onboarding sessions]
+      operationId: createEmployerOnboardingSession
+      summary: Create an employer onboarding session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [employer]
+              properties:
+                employer:
+                  type: string
+                  description: ID of the employer to create an onboarding session for
+                email:
+                  type: string
+                  description: >-
+                    Email address of the admin to create the session for. When
+                    provided, a User and EmployerAdmin are created (or found)
+                    for this email.
+                first_name:
+                  type: string
+                  description: First name of the admin (used when creating a new EmployerAdmin via email)
+                last_name:
+                  type: string
+                  description: Last name of the admin (used when creating a new EmployerAdmin via email)
+      responses:
+        '201':
+          description: Create an employer onboarding session
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/EmployerOnboardingSession' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /employers:
+    post:
+      tags: [Employers]
+      operationId: createEmployer
+      summary: Create an employer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/EmployerCreate' }
+      responses:
+        '201':
+          description: Create an employer
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Employer' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    get:
+      tags: [Employers]
+      operationId: listEmployers
+      summary: List employers
+      parameters:
+        - { $ref: '#/components/parameters/PageNumber' }
+        - { $ref: '#/components/parameters/PageSize' }
+      responses:
+        '200':
+          description: List employers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items: { $ref: '#/components/schemas/Employer' }
+                  pagination: { $ref: '#/components/schemas/Pagination' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /employers/{employer_id}:
+    parameters:
+      - name: employer_id
+        in: path
+        required: true
+        description: Employer ID
+        schema: { type: string }
+    get:
+      tags: [Employers]
+      operationId: getEmployer
+      summary: Get an employer
+      responses:
+        '200':
+          description: Get an employer
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Employer' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { $ref: '#/components/responses/NotFound' }
+    patch:
+      tags: [Employers]
+      operationId: updateEmployer
+      summary: Update an employer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/EmployerUpdate' }
+      responses:
+        '200':
+          description: Update an employer
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Employer' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /enrollments:
+    get:
+      tags: [Enrollments]
+      operationId: listEnrollments
+      summary: List enrollments
+      parameters:
+        - { $ref: '#/components/parameters/PageNumber' }
+        - { $ref: '#/components/parameters/PageSize' }
+        - name: member_id
+          in: query
+          description: Member ID
+          schema: { type: string }
+          example: mbr_01j7h53qa133q71z25n7a3w0n4
+        - name: status
+          in: query
+          description: Enrollment status
+          schema:
+            type: string
+            enum: [in_member_cart, member_confirmed, submission_processing, carrier_processing, completed, canceled]
+          example: completed
+      responses:
+        '200':
+          description: List enrollments
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items: { $ref: '#/components/schemas/Enrollment' }
+                  pagination: { $ref: '#/components/schemas/Pagination' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /enrollments/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Enrollment ID
+        schema: { type: string }
+        example: enrlmt_01j7h53qgy8m2q1f7563hbvpqj
+    get:
+      tags: [Enrollments]
+      operationId: getEnrollment
+      summary: Get an enrollment
+      responses:
+        '200':
+          description: Get an enrollment
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Enrollment' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /members:
+    get:
+      tags: [Members]
+      operationId: listMembers
+      summary: List members
+      parameters:
+        - { $ref: '#/components/parameters/PageNumber' }
+        - { $ref: '#/components/parameters/PageSize' }
+      responses:
+        '200':
+          description: List members
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items: { $ref: '#/components/schemas/Member' }
+                  pagination: { $ref: '#/components/schemas/Pagination' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /members/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Member ID
+        schema: { type: string }
+    get:
+      tags: [Members]
+      operationId: getMember
+      summary: Get a member
+      responses:
+        '200':
+          description: Get a member
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Member' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /employers/{employer_id}/pay_schedules:
+    parameters:
+      - name: employer_id
+        in: path
+        required: true
+        schema: { type: string }
+    post:
+      tags: [Pay Schedules]
+      operationId: createPaySchedule
+      summary: Create a pay schedule
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/PayScheduleCreate' }
+      responses:
+        '201':
+          description: Create a pay schedule
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PaySchedule' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    get:
+      tags: [Pay Schedules]
+      operationId: listPaySchedules
+      summary: List pay schedules for an employer
+      parameters:
+        - name: include_deactivated
+          in: query
+          description: Include deactivated pay schedules
+          schema: { type: boolean, default: false }
+      responses:
+        '200':
+          description: List pay schedules for an employer
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/PaySchedule' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /employers/{employer_id}/pay_schedules/{pay_schedule_id}:
+    parameters:
+      - name: employer_id
+        in: path
+        required: true
+        schema: { type: string }
+      - name: pay_schedule_id
+        in: path
+        required: true
+        description: Pay schedule ID
+        schema: { type: string }
+    get:
+      tags: [Pay Schedules]
+      operationId: getPaySchedule
+      summary: Get a specific pay schedule
+      responses:
+        '200':
+          description: Get a specific pay schedule
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PaySchedule' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { $ref: '#/components/responses/NotFound' }
+    patch:
+      tags: [Pay Schedules]
+      operationId: updatePaySchedule
+      summary: Update a pay schedule
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/PayScheduleUpdate' }
+      responses:
+        '200':
+          description: Update a pay schedule
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PaySchedule' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { $ref: '#/components/responses/NotFound' }
+    delete:
+      tags: [Pay Schedules]
+      operationId: deactivatePaySchedule
+      summary: Deactivate a pay schedule
+      responses:
+        '204':
+          description: Successfully deactivated pay schedule
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { $ref: '#/components/responses/NotFound' }
+components:
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: bearer
+      description: >-
+        All requests are authenticated with your API key using Bearer token
+        authentication. Include the header `Authorization: Bearer <YOUR_API_KEY>`.
+        Generate an API key in the Thatch dashboard.
+  parameters:
+    PageNumber:
+      name: page[number]
+      in: query
+      description: Page number
+      schema: { type: integer, format: int32, minimum: 1, default: 1 }
+    PageSize:
+      name: page[size]
+      in: query
+      description: Number of items per page. Must be between 1 and 1,000 (inclusive). Defaults to 20.
+      schema: { type: integer, format: int32, minimum: 1, maximum: 1000, default: 20 }
+  responses:
+    Unauthorized:
+      description: Authentication failed or API key missing/invalid.
+    NotFound:
+      description: The requested resource was not found.
+  schemas:
+    Money:
+      type: object
+      description: A monetary amount in minor units with an ISO 4217 currency code.
+      properties:
+        amount: { type: integer, description: Amount in the smallest currency unit (e.g. cents). }
+        currency_code: { type: string, example: USD }
+    Pagination:
+      type: object
+      properties:
+        total_records: { type: integer, example: 25 }
+        current_page: { type: integer, example: 1 }
+        total_pages: { type: integer, example: 3 }
+        next_page: { type: integer, example: 2 }
+        prev_page: { type: integer, example: 0 }
+    Metadata:
+      type: object
+      description: >-
+        Set of key-value pairs that you can attach to an API resource for storing
+        additional structured information. Individual keys can be unset by posting
+        an empty string value; all keys can be unset by posting an empty object.
+      additionalProperties: { type: string }
+    Dependent:
+      type: object
+      properties:
+        relationship: { type: string, example: spouse }
+        date_of_birth: { type: string, format: date }
+    EmployeePayScheduleRef:
+      type: object
+      properties:
+        id: { type: string }
+        start_date: { type: string, format: date }
+        end_date: { type: string, format: date }
+    EnrollmentEvent:
+      type: object
+      properties:
+        type: { type: string, example: open_enrollment }
+        subtype: { type: string, example: renewal }
+        plan_year: { type: integer, example: 2024 }
+        start_date: { type: string, format: date }
+        end_date: { type: string, format: date }
+        status: { type: string, example: active }
+    EmployeeCreate:
+      type: object
+      required: [employer_id, first_name, last_name, date_of_birth, zip]
+      properties:
+        employer_id: { type: string, description: Employer ID }
+        first_name: { type: string, description: Employee's first name }
+        last_name: { type: string, description: Employee's last name }
+        date_of_birth: { type: string, format: date, description: Employee's date of birth in YYYY-MM-DD format }
+        zip: { type: string, description: Employee's five-digit ZIP code }
+        personal_email: { type: string, description: Employee's personal email address }
+        work_email: { type: string, description: Employee's work email address }
+        employment_subtype: { type: string, enum: [part_time, full_time], description: Employee's employment subtype }
+        pay_type:
+          type: string
+          enum: [yearly, quarterly, monthly, semi_monthly, bi_weekly, weekly, daily, hourly, fixed, salary]
+          description: Employee's pay type
+        pay_rate: { type: number, format: float, description: Pay rate in case the employee is paid hourly }
+        start_date: { type: string, format: date, description: Employee's start date in YYYY-MM-DD format }
+        end_date: { type: string, format: date, description: Employee's end date in YYYY-MM-DD format }
+        dependents: { type: array, items: { $ref: '#/components/schemas/Dependent' } }
+        pay_schedules:
+          type: array
+          description: Employee's assigned pay schedules
+          items: { $ref: '#/components/schemas/EmployeePayScheduleRef' }
+        native_employee_id:
+          type: string
+          description: >-
+            Employee's identifier in the partner's payroll system. Used for
+            deduplication when employees are created via census upload and later
+            via API.
+        metadata: { $ref: '#/components/schemas/Metadata' }
+    EmployeeUpdate:
+      type: object
+      properties:
+        personal_email: { type: string }
+        work_email: { type: string }
+        first_name: { type: string }
+        last_name: { type: string }
+        employment_subtype: { type: string, enum: [part_time, full_time] }
+        pay_type:
+          type: string
+          enum: [yearly, quarterly, monthly, semi_monthly, bi_weekly, weekly, daily, hourly, fixed, salary]
+        pay_rate: { type: number, format: float }
+        start_date: { type: string, format: date }
+        end_date: { type: string, format: date }
+        date_of_birth: { type: string, format: date }
+        zip: { type: string }
+        dependents: { type: array, items: { $ref: '#/components/schemas/Dependent' } }
+        pay_schedules: { type: array, items: { $ref: '#/components/schemas/EmployeePayScheduleRef' } }
+        native_employee_id: { type: string }
+        metadata: { $ref: '#/components/schemas/Metadata' }
+    Employee:
+      type: object
+      properties:
+        id: { type: string, example: employee_01j85kpd8yxkabyrm83d3h2ya3 }
+        employer_id: { type: string, example: empl_01j2j3smtwx656y2tbqm7ty6gr }
+        personal_email: { type: string }
+        work_email: { type: string }
+        first_name: { type: string }
+        last_name: { type: string }
+        enrollment_events: { type: array, items: { $ref: '#/components/schemas/EnrollmentEvent' } }
+        pay_schedules: { type: array, items: { $ref: '#/components/schemas/EmployeePayScheduleRef' } }
+        member_id: { type: string, example: mbr_01j85kpd8yxkabyrm83d3h2ya3 }
+        invite_link: { type: string, description: Member onboarding invite link served from app.thatch.com }
+        date_of_birth: { type: string, format: date }
+        zip: { type: string }
+        dependents: { type: array, items: { $ref: '#/components/schemas/Dependent' } }
+        native_employee_id: { type: string }
+        metadata: { $ref: '#/components/schemas/Metadata' }
+    EmployerOnboardingSession:
+      type: object
+      properties:
+        employer: { type: string, example: empl_01j2j3smtwx656y2tbqm7ty6gr }
+        employer_admin_email: { type: string, example: admin@example.com }
+        claim_url:
+          type: string
+          description: URL to provide to the onboarding iframe.
+          example: https://app.thatch.com/employer_onboarding_sessions/SR86rPsHKWp02FivyQ6Z4hgUN0VBz6RR/claim
+        expires_at: { type: string, format: date-time }
+    CurrentHealthInsurance:
+      type: object
+      description: Current health insurance plan details
+      properties:
+        individual_deductible: { type: integer, example: 1500 }
+        individual_oop_max: { type: integer, example: 5000 }
+        network_type: { type: string, example: hmo }
+        metal_tier: { type: string, example: silver }
+    EmployerPricing:
+      type: object
+      description: The monthly pricing for the employer. Must be greater than the expected commission.
+      properties:
+        platform_fee: { $ref: '#/components/schemas/Money' }
+    LifecycleEvent:
+      type: object
+      properties:
+        id: { type: string, example: lcevent_01j2j3smtwx656y2tbqm7ty6gr }
+        event_type: { type: string, example: employees_invited }
+        timestamp: { type: string, format: date-time }
+    EmployerCreate:
+      type: object
+      required: [address_line1, business_type, city, ein, email, name, state, zip]
+      properties:
+        address_line1: { type: string, description: Employer's address (line 1) }
+        business_type:
+          type: string
+          enum: [c_corp, s_corp, llc, llp, partnership, sole_proprietorship, non_profit]
+          description: Employer's business type
+        city: { type: string, description: Employer's city }
+        ein: { type: string, description: Employer's EIN (Employer Identification Number) }
+        email: { type: string, description: Email address for the employer's administrator }
+        name: { type: string, description: Employer's legal business name }
+        state:
+          type: string
+          description: Employer's state (USPS two-letter code)
+          enum: [AK, AL, AR, AZ, CA, CO, CT, DC, DE, FL, GA, HI, IA, ID, IL, IN, KS, KY, LA, MA, MD, ME, MI, MN, MO, MS, MT, NC, ND, NE, NH, NJ, NM, NV, NY, OH, OK, OR, PA, RI, SC, SD, TN, TX, UT, VA, VT, WA, WI, WV, WY]
+        zip: { type: string, description: Employer's ZIP code, with optional +4 }
+        dba: { type: string, description: Employer's DBA name, if different from the legal business name }
+        industry_code:
+          type: string
+          description: >-
+            Employer's industry NAICS code (2-6 digits). Valid prefixes are: 11,
+            21, 22, 23, 31, 32, 33, 42, 44, 45, 48, 49, 51, 52, 53, 54, 55, 56,
+            61, 62, 71, 72, 81, 92
+        address_line2: { type: string, description: Employer's address (line 2) }
+        phone_number: { type: string, description: Employer's phone number }
+        first_name: { type: string, description: First name of the employer administrator }
+        last_name: { type: string, description: Last name of the employer administrator }
+        offers_health_insurance_today: { type: boolean, description: Whether the employer offers health insurance today }
+        current_health_insurance: { $ref: '#/components/schemas/CurrentHealthInsurance' }
+        coverage_start_date: { type: string, format: date, description: The desired start date for the employer's new health insurance coverage }
+        pricing: { $ref: '#/components/schemas/EmployerPricing' }
+        metadata: { $ref: '#/components/schemas/Metadata' }
+    EmployerUpdate:
+      type: object
+      properties:
+        offers_health_insurance_today: { type: boolean }
+        current_health_insurance: { $ref: '#/components/schemas/CurrentHealthInsurance' }
+        coverage_start_date: { type: string, format: date }
+        pricing: { $ref: '#/components/schemas/EmployerPricing' }
+        metadata: { $ref: '#/components/schemas/Metadata' }
+    Employer:
+      type: object
+      properties:
+        id: { type: string, example: empl_01j2j3smtwx656y2tbqm7ty6gr }
+        onboarding_status: { type: string, example: employees_invited }
+        name: { type: string }
+        business_type: { type: string }
+        ein: { type: string }
+        dba: { type: string }
+        address_line1: { type: string }
+        address_line2: { type: string }
+        city: { type: string }
+        state: { type: string }
+        zip: { type: string }
+        phone_number: { type: string }
+        industry: { type: string, example: professional_scientific_and_technical_services }
+        lifecycle_events: { type: array, items: { $ref: '#/components/schemas/LifecycleEvent' } }
+        pay_schedules: { type: array, items: { $ref: '#/components/schemas/PaySchedule' } }
+        pricing: { $ref: '#/components/schemas/EmployerPricing' }
+        metadata: { $ref: '#/components/schemas/Metadata' }
+    PayScheduleCreate:
+      type: object
+      required: [bank_closure_strategy, frequency, name]
+      properties:
+        bank_closure_strategy:
+          type: string
+          enum: [before, after, closest, ignore]
+          description: Strategy for handling bank closures
+        frequency:
+          type: string
+          enum: [monthly, semi_monthly, bi_weekly, weekly]
+          description: Pay frequency
+        name: { type: string, description: Readable name for the pay schedule }
+        first_pay_date: { type: string, format: date, description: First pay date of the schedule }
+        second_pay_date: { type: string, format: date, description: Second pay date of the schedule (only required for semi-monthly schedules) }
+        start_date: { type: string, description: Start date for the pay schedule (defaults to employer's earliest coverage start date on creation) }
+        end_date: { type: string, description: End date for the pay schedule }
+        reference_pay_date: { type: string, format: date, deprecated: true, description: Deprecated - use first_pay_date instead }
+        first_day: { type: integer, format: int32, minimum: 1, maximum: 31, deprecated: true, description: Deprecated - use first_pay_date instead }
+        second_day: { type: integer, format: int32, minimum: 1, maximum: 31, deprecated: true, description: Deprecated - use second_pay_date instead }
+    PayScheduleUpdate:
+      type: object
+      properties:
+        name: { type: string }
+        frequency: { type: string, enum: [monthly, semi_monthly, bi_weekly, weekly] }
+        bank_closure_strategy: { type: string, enum: [before, after, closest, ignore] }
+        first_pay_date: { type: string, format: date }
+        second_pay_date: { type: string, format: date }
+        start_date: { type: string }
+        end_date: { type: string }
+        reference_pay_date: { type: string, format: date, deprecated: true }
+        first_day: { type: integer, format: int32, minimum: 1, maximum: 31, deprecated: true }
+        second_day: { type: integer, format: int32, minimum: 1, maximum: 31, deprecated: true }
+    PaySchedule:
+      type: object
+      properties:
+        id: { type: string, example: paysch_1234 }
+        name: { type: string, example: Bi-Weekly Payroll }
+        reference_pay_date: { type: string, format: date, deprecated: true }
+        start_date: { type: string, format: date }
+        end_date: { type: string, format: date }
+        frequency: { type: string, example: bi_weekly }
+        first_day: { type: integer, deprecated: true }
+        second_day: { type: integer, deprecated: true }
+        bank_closure_strategy: { type: string, example: before }
+        remote_id: { type: string, example: remote_123 }
+        active: { type: boolean }
+    Plan:
+      type: object
+      properties:
+        id: { type: string, example: mdpln_01j7h53nf2j0hc5a235b6xmxn4 }
+        name: { type: string, example: Anthem Bronze 60 D HMO }
+        carrier_name: { type: string, example: Anthem }
+        hsa_eligible: { type: boolean }
+        logo_url: { type: string }
+        sbc_url: { type: string }
+    Broker:
+      type: object
+      properties:
+        name: { type: string, example: Thatch Health Insurance Services LLC }
+        npn: { type: string, example: '20782309' }
+    EnrollmentCoverage:
+      type: object
+      properties:
+        first_name: { type: string }
+        last_name: { type: string }
+        relationship: { type: string, example: self }
+        date_of_birth: { type: string, format: date }
+        gender: { type: string, example: female }
+        start_date: { type: string, format: date }
+        end_date: { type: string, format: date }
+    StatusEvent:
+      type: object
+      properties:
+        status: { type: string, example: completed }
+        timestamp: { type: string, format: date-time }
+    Enrollment:
+      type: object
+      properties:
+        id: { type: string, example: enrlmt_01j7h53qgy8m2q1f7563hbvpqj }
+        member_id: { type: string, example: mbr_01j7h53qa133q71z25n7a3w0n4 }
+        coverage_types: { type: array, items: { type: string }, example: [medical] }
+        status:
+          type: string
+          enum: [in_member_cart, member_confirmed, submission_processing, carrier_processing, completed, canceled]
+        status_events: { type: array, items: { $ref: '#/components/schemas/StatusEvent' } }
+        plan: { $ref: '#/components/schemas/Plan' }
+        plan_id: { type: string }
+        plan_code: { type: string, example: standard }
+        premium: { $ref: '#/components/schemas/Money' }
+        broker: { $ref: '#/components/schemas/Broker' }
+        enrollment_coverages: { type: array, items: { $ref: '#/components/schemas/EnrollmentCoverage' } }
+    Member:
+      type: object
+      properties:
+        id: { type: string, example: mbr_01j85kpd8yxkabyrm83d3h2ya3 }
+        employee_id: { type: string, example: employee_01j7h53r7gpd0q0wtx4pcfcska }
+        first_name: { type: string }
+        last_name: { type: string }
+        address_line1: { type: string }
+        address_line2: { type: string }
+        city: { type: string }
+        state: { type: string }
+        zip: { type: string }
+        date_of_birth: { type: string, format: date }
+        allowance: { $ref: '#/components/schemas/Money' }
+        balance: { $ref: '#/components/schemas/Money' }
+    Deduction:
+      type: object
+      properties:
+        amount: { $ref: '#/components/schemas/Money' }
+        type: { type: string, example: s125_pretax }
+        applied_correction: { $ref: '#/components/schemas/Money' }
+    DeductionPeriod:
+      type: object
+      properties:
+        start_date: { type: string, format: date }
+        end_date: { type: string, format: date }
+        deductions: { type: array, items: { $ref: '#/components/schemas/Deduction' } }
+    EmployeeDeductions:
+      type: object
+      properties:
+        employee_id: { type: string, example: employee_01j85kpd8yxkabyrm83d3h2ya3 }
+        periods: { type: array, items: { $ref: '#/components/schemas/DeductionPeriod' } }

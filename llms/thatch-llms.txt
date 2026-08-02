@@ -1,0 +1,31 @@
+# Thatch for Platforms
+
+> Thatch for Platforms is a set of REST APIs and embeddable JavaScript components that let partners bring ICHRA (Individual Coverage Health Reimbursement Arrangement) benefits to their customers. Partners onboard employers, manage employees, run the employer onboarding flow through an embedded iframe, and track enrollments, members, pay schedules, and payroll deductions. Access is limited to approved partners (platforms@thatch.com); requests authenticate with a partner API key as a Bearer token. Base URL: https://partners.thatchcloud.com/api/partners/v1
+
+## APIs
+
+- [Thatch for Platforms API](https://raw.githubusercontent.com/api-evangelist/thatch/refs/heads/main/openapi/thatch-partners-openapi.yml): OpenAPI 3.1 for the ICHRA partner API — employers, employees, onboarding sessions, enrollments, members, pay schedules, deductions (19 operations)
+
+## Docs
+
+- [Quickstart guide](https://docs.thatch.com/): Getting started with Thatch for Platforms
+- [API reference](https://docs.thatch.com/api/): Full operation and schema reference (Redocly)
+- [Status](https://status.thatch.com): Thatch service status
+- [Trust center](https://trust.thatch.com/): Security and compliance (SOC 2)
+
+## Artifacts
+
+- [Authentication](https://raw.githubusercontent.com/api-evangelist/thatch/refs/heads/main/authentication/thatch-authentication.yml): Bearer API-key auth profile
+- [Conventions](https://raw.githubusercontent.com/api-evangelist/thatch/refs/heads/main/conventions/thatch-conventions.yml): Pagination, metadata, identifiers, money, versioning, errors
+- [Error catalog](https://raw.githubusercontent.com/api-evangelist/thatch/refs/heads/main/errors/thatch-problem-types.yml): Error envelope and failure modes
+- [Data model](https://raw.githubusercontent.com/api-evangelist/thatch/refs/heads/main/data-model/thatch-data-model.yml): Entity-relationship graph
+- [Lifecycle](https://raw.githubusercontent.com/api-evangelist/thatch/refs/heads/main/lifecycle/thatch-lifecycle.yml): Versioning, status page, field deprecations
+- [Embedded components](https://raw.githubusercontent.com/api-evangelist/thatch/refs/heads/main/components/thatch-components.yml): Employer onboarding iframe and member invite link
+- [Agent skill: onboard an employer](https://raw.githubusercontent.com/api-evangelist/thatch/refs/heads/main/skills/thatch-onboard-employer.md)
+
+## Company
+
+- [Thatch website](https://thatch.com)
+- [Thatch for Platforms](https://thatch.com/platforms)
+- [Blog](https://thatch.com/blog)
+- [Pricing](https://thatch.com/pricing)

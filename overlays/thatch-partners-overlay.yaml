@@ -1,0 +1,20 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Thatch for Platforms
+  version: 1.0.0
+extends: openapi/thatch-partners-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-enriched: '2026-07-21'
+      x-apievangelist-source: https://docs.thatch.com/api/
+      x-apievangelist-category: ICHRA health benefits platform API
+  - target: $.info
+    update:
+      x-conventions: conventions/thatch-conventions.yml
+      x-error-catalog: errors/thatch-problem-types.yml
+      x-data-model: data-model/thatch-data-model.yml
+      x-lifecycle: lifecycle/thatch-lifecycle.yml
+  - target: $.components.securitySchemes.Bearer
+    update:
+      x-notes: Partner API key issued from the Thatch dashboard; access limited to approved partners.

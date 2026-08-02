@@ -1,0 +1,29 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/thatch-partners-openapi.yml
+standards:
+  - id: openapi-3.1
+    conforms: true
+    evidence: Provider publishes a Redocly-rendered API reference; captured as OpenAPI 3.1.
+  - id: http-bearer-auth
+    conforms: true
+    evidence: securitySchemes Bearer (http/bearer) applied globally.
+  - id: oauth2
+    conforms: false
+    evidence: No OAuth2 flows; partner API-key Bearer only.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use a simple {"message":...} envelope, not application/problem+json.
+  - id: pagination-page-number
+    conforms: true
+    evidence: page[number]/page[size] params with a pagination response envelope.
+  - id: idempotency
+    conforms: false
+    evidence: No idempotency-key header/parameter documented.
+  - id: soc2
+    conforms: true
+    evidence: SOC 2 named on the Thatch trust center (https://trust.thatch.com/).
+compliance_program:
+  published: true
+  url: https://trust.thatch.com/
+  certifications: [SOC 2]

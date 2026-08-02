@@ -1,0 +1,77 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.thatch.com/
+api: openapi/thatch-partners-openapi.yml
+summary: >-
+  Cross-cutting request/response conventions for the Thatch for Platforms API,
+  derived from the OpenAPI reference and the quickstart guide. REST over HTTPS,
+  JSON bodies, Bearer API-key auth, page-based pagination with a pagination
+  envelope, Stripe-style metadata, prefixed ULID resource identifiers, and a
+  URI-path API version (v1).
+authentication:
+  style: bearer-token
+  header: 'Authorization: Bearer <YOUR_API_KEY>'
+  notes: API keys are generated in the Thatch dashboard; access is partner-gated.
+  ref: authentication/thatch-authentication.yml
+base_url: https://partners.thatchcloud.com/api/partners/v1
+content_type: application/json
+idempotency:
+  supported: false
+  notes: No idempotency-key header or parameter is documented in the reference or quickstart as of this pass.
+pagination:
+  style: page-number
+  params:
+    page_number: 'page[number]'
+    page_size: 'page[size]'
+  page_size_default: 20
+  page_size_min: 1
+  page_size_max: 1000
+  response_envelope:
+    data: array of resources
+    pagination:
+      fields: [total_records, current_page, total_pages, next_page, prev_page]
+  notes: >-
+    List endpoints return {data:[...], pagination:{...}}. The pay-schedules list
+    endpoint is the exception and returns a bare array.
+filtering:
+  notes: >-
+    List endpoints accept resource-scoped filters as query params, e.g.
+    employer_id, member_id, status, and bracketed range filters such as
+    periods[start_after] / periods[end_before] on deductions.
+metadata:
+  supported: true
+  shape: object of string key-value pairs
+  unset_single_key: post empty string value ("")
+  unset_all_keys: post empty object ({})
+  resources: [employer, employee]
+identifiers:
+  style: prefixed ULID-style tokens
+  prefixes:
+    employer: empl_
+    employee: employee_
+    member: mbr_
+    enrollment: enrlmt_
+    medical_plan: mdpln_
+    pay_schedule: paysch_
+    lifecycle_event: lcevent_
+    onboarding_session_claim: opaque token in claim_url
+money:
+  shape: '{ amount: integer (minor units), currency_code: ISO 4217 }'
+  fields: [premium, allowance, balance, platform_fee, deduction amount]
+versioning:
+  scheme: uri-path
+  current: v1
+  ref: lifecycle/thatch-lifecycle.yml
+error_envelope:
+  format: simple-message
+  shape: '{ "message": "..." }'
+  problem_json: false
+  ref: errors/thatch-problem-types.yml
+rate_limiting:
+  documented: false
+embedded_components:
+  notes: >-
+    Employer onboarding is completed inside a Thatch-hosted iframe (claim_url);
+    the iframe posts a THATCH_REDIRECT message to the parent window on completion.
+    Member onboarding uses an invite_link served from app.thatch.com.
+  ref: components/thatch-components.yml

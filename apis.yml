@@ -1,8 +1,16 @@
 aid: thatch
 name: Thatch
-description: Thatch is a company surfaced as a portfolio company of general-catalyst, gv, index-ventures,
-  lux-capital and added to the API Evangelist network as a stub for enrichment. This profile is a lead
-  awaiting the enrichment pipeline.
+description: >-
+  Thatch is a health benefits company that helps businesses offer personalized
+  health insurance through an ICHRA (Individual Coverage Health Reimbursement
+  Arrangement) plus a Thatch Visa spend card. Its developer product, Thatch for
+  Platforms, is a set of REST APIs and embeddable JavaScript components that let
+  partners (payroll, HR, and SMB platforms) bring ICHRA benefits into their own
+  applications: create employers, manage employees, run a hosted employer
+  onboarding flow, track enrollments and members, model pay schedules, and pull
+  monthly payroll deductions. The API is partner-gated, authenticates with a
+  Bearer API key, and is documented at docs.thatch.com. Thatch is backed by a16z,
+  General Catalyst, GV, Index Ventures, and Lux Capital.
 url: https://raw.githubusercontent.com/api-evangelist/thatch/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -13,17 +21,212 @@ x-backed-by:
 - lux-capital
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
+image: https://thatch.com/opengraph/thatch-main.png
 tags:
+- Health Insurance
+- Health Benefits
+- ICHRA
+- Employee Benefits
+- Payroll
+- Insurance
+- Fintech
+- Embedded Finance
 - Company
-apis: []
+apis:
+- aid: thatch:thatch-deductions-api
+  name: Thatch Deductions API
+  description: Payroll deductions track the costs of plan premiums to employees.
+  humanURL: https://docs.thatch.com/api/
+  baseURL: https://partners.thatchcloud.com/api/partners/v1
+  tags:
+  - Deductions
+  properties:
+  - type: OpenAPI
+    url: openapi/thatch-deductions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.thatch.com/
+  - type: APIReference
+    url: https://docs.thatch.com/api/
+  - type: GettingStarted
+    url: https://docs.thatch.com/
+- aid: thatch:thatch-employees-api
+  name: Thatch Employees API
+  description: >-
+    Employees work for employers, both of which are managed by partners. Employees enrolled in plans are
+    also represented in Thatch as member objects.
+  humanURL: https://docs.thatch.com/api/
+  baseURL: https://partners.thatchcloud.com/api/partners/v1
+  tags:
+  - Employees
+  properties:
+  - type: OpenAPI
+    url: openapi/thatch-employees-api-openapi.yml
+  - type: Documentation
+    url: https://docs.thatch.com/
+  - type: APIReference
+    url: https://docs.thatch.com/api/
+  - type: GettingStarted
+    url: https://docs.thatch.com/
+- aid: thatch:thatch-employer-onboarding-sessions-api
+  name: Thatch Employer onboarding sessions API
+  description: >-
+    Employers onboard into a platform through employer onboarding sessions. After creating a session,
+    provide the claim_url to the onboarding iframe in your app.
+  humanURL: https://docs.thatch.com/api/
+  baseURL: https://partners.thatchcloud.com/api/partners/v1
+  tags:
+  - Employer onboarding sessions
+  properties:
+  - type: OpenAPI
+    url: openapi/thatch-employer-onboarding-sessions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.thatch.com/
+  - type: APIReference
+    url: https://docs.thatch.com/api/
+  - type: GettingStarted
+    url: https://docs.thatch.com/
+- aid: thatch:thatch-employers-api
+  name: Thatch Employers API
+  description: Platforms onboard employers into Thatch, and have employees enrolled in plans.
+  humanURL: https://docs.thatch.com/api/
+  baseURL: https://partners.thatchcloud.com/api/partners/v1
+  tags:
+  - Employers
+  properties:
+  - type: OpenAPI
+    url: openapi/thatch-employers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.thatch.com/
+  - type: APIReference
+    url: https://docs.thatch.com/api/
+  - type: GettingStarted
+    url: https://docs.thatch.com/
+- aid: thatch:thatch-enrollments-api
+  name: Thatch Enrollments API
+  description: Enrollments use member objects to track employee coverage status.
+  humanURL: https://docs.thatch.com/api/
+  baseURL: https://partners.thatchcloud.com/api/partners/v1
+  tags:
+  - Enrollments
+  properties:
+  - type: OpenAPI
+    url: openapi/thatch-enrollments-api-openapi.yml
+  - type: Documentation
+    url: https://docs.thatch.com/
+  - type: APIReference
+    url: https://docs.thatch.com/api/
+  - type: GettingStarted
+    url: https://docs.thatch.com/
+- aid: thatch:thatch-members-api
+  name: Thatch Members API
+  description: Members represent employees enrolled in plans.
+  humanURL: https://docs.thatch.com/api/
+  baseURL: https://partners.thatchcloud.com/api/partners/v1
+  tags:
+  - Members
+  properties:
+  - type: OpenAPI
+    url: openapi/thatch-members-api-openapi.yml
+  - type: Documentation
+    url: https://docs.thatch.com/
+  - type: APIReference
+    url: https://docs.thatch.com/api/
+  - type: GettingStarted
+    url: https://docs.thatch.com/
+- aid: thatch:thatch-pay-schedules-api
+  name: Thatch Pay Schedules API
+  description: >-
+    Pay schedules model the cadence of employee paychecks for the purpose of deduction calculations.
+  humanURL: https://docs.thatch.com/api/
+  baseURL: https://partners.thatchcloud.com/api/partners/v1
+  tags:
+  - Pay Schedules
+  properties:
+  - type: OpenAPI
+    url: openapi/thatch-pay-schedules-api-openapi.yml
+  - type: Documentation
+    url: https://docs.thatch.com/
+  - type: APIReference
+    url: https://docs.thatch.com/api/
+  - type: GettingStarted
+    url: https://docs.thatch.com/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DeveloperPortal
+  url: https://docs.thatch.com/
+- type: Documentation
+  url: https://docs.thatch.com/
+- type: APIReference
+  url: https://docs.thatch.com/api/
+- type: GettingStarted
+  url: https://docs.thatch.com/
+- type: OpenAPI
+  url: openapi/thatch-partners-openapi.yml
+- type: Overlay
+  url: overlays/thatch-partners-overlay.yaml
+- type: Authentication
+  url: authentication/thatch-authentication.yml
+- type: Conventions
+  url: conventions/thatch-conventions.yml
+- type: ErrorCatalog
+  url: errors/thatch-problem-types.yml
+- type: DataModel
+  url: data-model/thatch-data-model.yml
+- type: Lifecycle
+  url: lifecycle/thatch-lifecycle.yml
+- type: StatusPage
+  url: https://status.thatch.com
+- type: Conformance
+  url: conformance/thatch-conformance.yml
+- type: Compliance
+  url: https://trust.thatch.com/
+- type: TrustCenter
+  url: security/thatch-trust-center.yml
+- type: DomainSecurity
+  url: security/thatch-domain-security.yml
+- type: AgenticAccess
+  url: agentic-access/thatch-agentic-access.yml
+- type: MCPServer
+  url: mcp/thatch-mcp.yml
+- type: AgentSkill
+  url: skills/thatch-onboard-employer.md
+- type: Components
+  url: components/thatch-components.yml
+- type: WellKnown
+  url: well-known/thatch-well-known.yml
+- type: LLMsTxt
+  url: llms/thatch-llms.txt
+- type: Blog
+  url: https://thatch.com/blog
+- type: Pricing
+  url: https://thatch.com/pricing
+- type: TermsOfService
+  url: https://thatch.com/terms
+- type: PrivacyPolicy
+  url: https://thatch.com/privacy
 - type: Website
-  url: https://thatch.ai
+  url: https://thatch.com
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 16
+  pass: local-v1

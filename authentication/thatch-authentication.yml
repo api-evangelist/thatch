@@ -1,0 +1,17 @@
+generated: '2026-07-21'
+method: searched
+source: openapi/thatch-partners-openapi.yml
+docs: https://docs.thatch.com/
+summary:
+  model: All requests are authenticated and authorized using a partner API key sent as a Bearer token. Generate an API key in the Thatch dashboard. Access is limited to approved partners.
+  types:
+  - http
+schemes:
+- name: Bearer
+  type: http
+  scheme: bearer
+  description: 'All requests are authenticated with your API key using Bearer token authentication.
+    Include the header `Authorization: Bearer <YOUR_API_KEY>`. Generate an API key in the Thatch
+    dashboard.'
+  sources:
+  - openapi/thatch-partners-openapi.yml

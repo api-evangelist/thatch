@@ -1,0 +1,26 @@
+{
+  "provider": "thatch",
+  "sources": [
+    "thatch-deductions-api-openapi.yml",
+    "thatch-employees-api-openapi.yml",
+    "thatch-employer-onboarding-sessions-api-openapi.yml",
+    "thatch-employers-api-openapi.yml",
+    "thatch-enrollments-api-openapi.yml",
+    "thatch-members-api-openapi.yml",
+    "thatch-pay-schedules-api-openapi.yml"
+  ],
+  "outputs": [
+    "thatch-deductions-api-openapi.yml",
+    "thatch-employees-api-openapi.yml",
+    "thatch-employer-onboarding-sessions-api-openapi.yml",
+    "thatch-employers-api-openapi.yml",
+    "thatch-enrollments-api-openapi.yml",
+    "thatch-members-api-openapi.yml",
+    "thatch-pay-schedules-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

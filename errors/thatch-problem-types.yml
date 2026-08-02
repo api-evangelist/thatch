@@ -1,0 +1,40 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/thatch-partners-openapi.yml
+probe: https://partners.thatchcloud.com/api/partners/v1/employers
+format: simple-message
+envelope:
+  shape: '{ "message": "..." }'
+  problem_json: false
+  notes: >-
+    An unauthenticated live request returned HTTP 401 with body {"message":"Unauthorized"}
+    and Content-Type application/json. The API uses a simple message envelope, not
+    RFC 9457 application/problem+json. The reference does not publish a full error
+    catalog; the entries below are the standard HTTP failure modes derived from the
+    operations plus the observed 401.
+problems:
+  - status: 401
+    title: Unauthorized
+    observed: true
+    message: Unauthorized
+    remediation: Provide a valid partner API key as an Authorization Bearer token.
+  - status: 404
+    title: Not found
+    remediation: Verify the resource id (empl_/employee_/mbr_/enrlmt_/paysch_ prefix) exists and belongs to your partner account.
+    source_operations:
+      - openapi/thatch-partners-openapi.yml#getEmployer
+      - openapi/thatch-partners-openapi.yml#getEmployee
+      - openapi/thatch-partners-openapi.yml#getMember
+      - openapi/thatch-partners-openapi.yml#getEnrollment
+      - openapi/thatch-partners-openapi.yml#getPaySchedule
+  - status: 422
+    title: Validation error
+    derived: true
+    remediation: >-
+      Correct invalid or missing fields on create/update requests (e.g. invalid
+      business_type, state, pay_type, frequency, or bank_closure_strategy enum,
+      malformed ein/zip/date).
+    source_operations:
+      - openapi/thatch-partners-openapi.yml#createEmployer
+      - openapi/thatch-partners-openapi.yml#createEmployee
+      - openapi/thatch-partners-openapi.yml#createPaySchedule

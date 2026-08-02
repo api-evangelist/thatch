@@ -1,0 +1,25 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.thatch.com/
+api: openapi/thatch-partners-openapi.yml
+versioning:
+  scheme: uri-path
+  current: v1
+  base_path: /api/partners/v1
+  docs: https://docs.thatch.com/api/
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: >-
+    No formal published deprecation policy or RFC 8594 Sunset/Deprecation header
+    support was found. Field-level deprecations are marked in the API reference
+    (pay-schedule fields reference_pay_date, first_day, second_day are deprecated
+    in favor of first_pay_date / second_pay_date).
+status_page: https://status.thatch.com
+sla:
+  url: null
+deprecated_fields:
+  - openapi/thatch-partners-openapi.yml#PaySchedule.reference_pay_date
+  - openapi/thatch-partners-openapi.yml#PaySchedule.first_day
+  - openapi/thatch-partners-openapi.yml#PaySchedule.second_day
+deprecated_operations: []
