@@ -180,7 +180,7 @@ common:
 - type: GettingStarted
   url: https://docs.thatch.com/
 - type: OpenAPI
-  url: openapi/thatch-partners-openapi.yml
+  url: openapi/_original/thatch-partners-openapi.yml
 - type: Overlay
   url: overlays/thatch-partners-overlay.yaml
 - type: Authentication
