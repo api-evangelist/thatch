@@ -1,0 +1,106 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Thatch for Platforms Deductions Employers API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Employers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List employers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://partners.thatchcloud.com/api/partners/v1/employers",
+            "params": [
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query",
+                "description": "Page number"
+              },
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page. Must be between 1 and 1,000 (inclusive). Defaults to 20."
+              }
+            ]
+          },
+          "docs": "List employers"
+        },
+        {
+          "info": {
+            "name": "Create an employer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://partners.thatchcloud.com/api/partners/v1/employers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an employer"
+        },
+        {
+          "info": {
+            "name": "Get an employer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://partners.thatchcloud.com/api/partners/v1/employers/:employer_id",
+            "params": [
+              {
+                "name": "employer_id",
+                "value": "",
+                "type": "path",
+                "description": "Employer ID"
+              }
+            ]
+          },
+          "docs": "Get an employer"
+        },
+        {
+          "info": {
+            "name": "Update an employer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://partners.thatchcloud.com/api/partners/v1/employers/:employer_id",
+            "params": [
+              {
+                "name": "employer_id",
+                "value": "",
+                "type": "path",
+                "description": "Employer ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an employer"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

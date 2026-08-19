@@ -1,0 +1,758 @@
+{
+  "item": [
+    {
+      "id": "1872ae2e-9660-4760-aaa7-f700e64302e4",
+      "name": "Employees",
+      "description": {
+        "content": "Employees work for employers, both of which are managed by partners. Employees enrolled in plans are also represented in Thatch as member objects.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7463511f-5e4d-42cd-9128-3931489952da",
+          "name": "Create an employee",
+          "request": {
+            "name": "Create an employee",
+            "description": {},
+            "url": {
+              "path": [
+                "employees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"employer_id\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"zip\": \"<string>\",\n  \"personal_email\": \"<string>\",\n  \"work_email\": \"<string>\",\n  \"employment_subtype\": \"<string>\",\n  \"pay_type\": \"<string>\",\n  \"pay_rate\": \"<float>\",\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"dependents\": [\n    {\n      \"relationship\": \"<string>\",\n      \"date_of_birth\": \"<date>\"\n    },\n    {\n      \"relationship\": \"<string>\",\n      \"date_of_birth\": \"<date>\"\n    }\n  ],\n  \"pay_schedules\": [\n    {\n      \"id\": \"<string>\",\n      \"start_date\": \"<date>\",\n      \"end_date\": \"<date>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"start_date\": \"<date>\",\n      \"end_date\": \"<date>\"\n    }\n  ],\n  \"native_employee_id\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3ca66645-0df7-477a-9da3-e5ffe65acd26",
+              "name": "Create an employee",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employer_id\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"zip\": \"<string>\",\n  \"personal_email\": \"<string>\",\n  \"work_email\": \"<string>\",\n  \"employment_subtype\": \"<string>\",\n  \"pay_type\": \"<string>\",\n  \"pay_rate\": \"<float>\",\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"dependents\": [\n    {\n      \"relationship\": \"spouse\",\n      \"date_of_birth\": \"1972-01-27\"\n    },\n    {\n      \"relationship\": \"spouse\",\n      \"date_of_birth\": \"1976-09-13\"\n    }\n  ],\n  \"pay_schedules\": [\n    {\n      \"id\": \"string\",\n      \"start_date\": \"2013-01-08\",\n      \"end_date\": \"2019-10-29\"\n    },\n    {\n      \"id\": \"string\",\n      \"start_date\": \"1986-12-24\",\n      \"end_date\": \"2005-06-09\"\n    }\n  ],\n  \"native_employee_id\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"employee_01j85kpd8yxkabyrm83d3h2ya3\",\n  \"employer_id\": \"empl_01j2j3smtwx656y2tbqm7ty6gr\",\n  \"personal_email\": \"string\",\n  \"work_email\": \"string\",\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"enrollment_events\": [\n    {\n      \"type\": \"open_enrollment\",\n      \"subtype\": \"renewal\",\n      \"plan_year\": 2024,\n      \"start_date\": \"2000-06-13\",\n      \"end_date\": \"1966-12-17\",\n      \"status\": \"active\"\n    },\n    {\n      \"type\": \"open_enrollment\",\n      \"subtype\": \"renewal\",\n      \"plan_year\": 2024,\n      \"start_date\": \"1983-03-02\",\n      \"end_date\": \"1962-12-26\",\n      \"status\": \"active\"\n    }\n  ],\n  \"pay_schedules\": [\n    {\n      \"id\": \"string\",\n      \"start_date\": \"1979-03-13\",\n      \"end_date\": \"1952-10-23\"\n    },\n    {\n      \"id\": \"string\",\n      \"start_date\": \"1996-11-07\",\n      \"end_date\": \"1950-10-05\"\n    }\n  ],\n  \"member_id\": \"mbr_01j85kpd8yxkabyrm83d3h2ya3\",\n  \"invite_link\": \"string\",\n  \"date_of_birth\": \"1995-06-24\",\n  \"zip\": \"string\",\n  \"dependents\": [\n    {\n      \"relationship\": \"spouse\",\n      \"date_of_birth\": \"1954-11-30\"\n    },\n    {\n      \"relationship\": \"spouse\",\n      \"date_of_birth\": \"1990-09-15\"\n    }\n  ],\n  \"native_employee_id\": \"string\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee38bfd7-b226-4f62-942e-5d05df5ac65f",
+              "name": "Authentication failed or API key missing/invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employer_id\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"zip\": \"<string>\",\n  \"personal_email\": \"<string>\",\n  \"work_email\": \"<string>\",\n  \"employment_subtype\": \"<string>\",\n  \"pay_type\": \"<string>\",\n  \"pay_rate\": \"<float>\",\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"dependents\": [\n    {\n      \"relationship\": \"spouse\",\n      \"date_of_birth\": \"1972-01-27\"\n    },\n    {\n      \"relationship\": \"spouse\",\n      \"date_of_birth\": \"1976-09-13\"\n    }\n  ],\n  \"pay_schedules\": [\n    {\n      \"id\": \"string\",\n      \"start_date\": \"2013-01-08\",\n      \"end_date\": \"2019-10-29\"\n    },\n    {\n      \"id\": \"string\",\n      \"start_date\": \"1986-12-24\",\n      \"end_date\": \"2005-06-09\"\n    }\n  ],\n  \"native_employee_id\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2387858c-935a-4f65-ab7b-b59135c47468",
+          "name": "List employees",
+          "request": {
+            "name": "List employees",
+            "description": {},
+            "url": {
+              "path": [
+                "employees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "employer_id",
+                  "value": "<string>",
+                  "description": "ID of the employee's employer"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[number]",
+                  "value": "1",
+                  "description": "Page number"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[size]",
+                  "value": "20",
+                  "description": "Number of items per page. Must be between 1 and 1,000 (inclusive). Defaults to 20."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "95c80eb0-54b8-42de-978e-e376e3bd0b64",
+              "name": "List employees",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "employer_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"employee_01j85kpd8yxkabyrm83d3h2ya3\",\n      \"employer_id\": \"empl_01j2j3smtwx656y2tbqm7ty6gr\",\n      \"personal_email\": \"string\",\n      \"work_email\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"enrollment_events\": [\n        {\n          \"type\": \"open_enrollment\",\n          \"subtype\": \"renewal\",\n          \"plan_year\": 2024,\n          \"start_date\": \"1978-08-09\",\n          \"end_date\": \"2021-03-19\",\n          \"status\": \"active\"\n        },\n        {\n          \"type\": \"open_enrollment\",\n          \"subtype\": \"renewal\",\n          \"plan_year\": 2024,\n          \"start_date\": \"1955-11-27\",\n          \"end_date\": \"1949-11-25\",\n          \"status\": \"active\"\n        }\n      ],\n      \"pay_schedules\": [\n        {\n          \"id\": \"string\",\n          \"start_date\": \"1961-03-30\",\n          \"end_date\": \"1962-02-13\"\n        },\n        {\n          \"id\": \"string\",\n          \"start_date\": \"1958-03-10\",\n          \"end_date\": \"1971-08-26\"\n        }\n      ],\n      \"member_id\": \"mbr_01j85kpd8yxkabyrm83d3h2ya3\",\n      \"invite_link\": \"string\",\n      \"date_of_birth\": \"2001-07-13\",\n      \"zip\": \"string\",\n      \"dependents\": [\n        {\n          \"relationship\": \"spouse\",\n          \"date_of_birth\": \"1982-05-14\"\n        },\n        {\n          \"relationship\": \"spouse\",\n          \"date_of_birth\": \"1956-04-24\"\n        }\n      ],\n      \"native_employee_id\": \"string\",\n      \"metadata\": {\n        \"key_0\": \"string\"\n      }\n    },\n    {\n      \"id\": \"employee_01j85kpd8yxkabyrm83d3h2ya3\",\n      \"employer_id\": \"empl_01j2j3smtwx656y2tbqm7ty6gr\",\n      \"personal_email\": \"string\",\n      \"work_email\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"enrollment_events\": [\n        {\n          \"type\": \"open_enrollment\",\n          \"subtype\": \"renewal\",\n          \"plan_year\": 2024,\n          \"start_date\": \"1958-04-27\",\n          \"end_date\": \"1947-10-18\",\n          \"status\": \"active\"\n        },\n        {\n          \"type\": \"open_enrollment\",\n          \"subtype\": \"renewal\",\n          \"plan_year\": 2024,\n          \"start_date\": \"2015-11-09\",\n          \"end_date\": \"1996-02-19\",\n          \"status\": \"active\"\n        }\n      ],\n      \"pay_schedules\": [\n        {\n          \"id\": \"string\",\n          \"start_date\": \"1991-10-11\",\n          \"end_date\": \"1969-12-02\"\n        },\n        {\n          \"id\": \"string\",\n          \"start_date\": \"2018-01-08\",\n          \"end_date\": \"2014-10-23\"\n        }\n      ],\n      \"member_id\": \"mbr_01j85kpd8yxkabyrm83d3h2ya3\",\n      \"invite_link\": \"string\",\n      \"date_of_birth\": \"1985-07-03\",\n      \"zip\": \"string\",\n      \"dependents\": [\n        {\n          \"relationship\": \"spouse\",\n          \"date_of_birth\": \"1962-12-26\"\n        },\n        {\n          \"relationship\": \"spouse\",\n          \"date_of_birth\": \"1955-02-03\"\n        }\n      ],\n      \"native_employee_id\": \"string\",\n      \"metadata\": {\n        \"key_0\": \"string\"\n      }\n    }\n  ],\n  \"pagination\": {\n    \"total_records\": 25,\n    \"current_page\": 1,\n    \"total_pages\": 3,\n    \"next_page\": 2,\n    \"prev_page\": 0\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e06ba651-cf88-4d39-9296-c20c6e86c066",
+              "name": "Authentication failed or API key missing/invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "employer_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e285632f-d3c7-4e54-a0ba-abf5cfd56d10",
+          "name": "Get an employee",
+          "request": {
+            "name": "Get an employee",
+            "description": {},
+            "url": {
+              "path": [
+                "employees",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Employee ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cc8625b0-a691-45a9-9c86-072a39e9a51e",
+              "name": "Get an employee",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Employee ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"employee_01j85kpd8yxkabyrm83d3h2ya3\",\n  \"employer_id\": \"empl_01j2j3smtwx656y2tbqm7ty6gr\",\n  \"personal_email\": \"string\",\n  \"work_email\": \"string\",\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"enrollment_events\": [\n    {\n      \"type\": \"open_enrollment\",\n      \"subtype\": \"renewal\",\n      \"plan_year\": 2024,\n      \"start_date\": \"2000-06-13\",\n      \"end_date\": \"1966-12-17\",\n      \"status\": \"active\"\n    },\n    {\n      \"type\": \"open_enrollment\",\n      \"subtype\": \"renewal\",\n      \"plan_year\": 2024,\n      \"start_date\": \"1983-03-02\",\n      \"end_date\": \"1962-12-26\",\n      \"status\": \"active\"\n    }\n  ],\n  \"pay_schedules\": [\n    {\n      \"id\": \"string\",\n      \"start_date\": \"1979-03-13\",\n      \"end_date\": \"1952-10-23\"\n    },\n    {\n      \"id\": \"string\",\n      \"start_date\": \"1996-11-07\",\n      \"end_date\": \"1950-10-05\"\n    }\n  ],\n  \"member_id\": \"mbr_01j85kpd8yxkabyrm83d3h2ya3\",\n  \"invite_link\": \"string\",\n  \"date_of_birth\": \"1995-06-24\",\n  \"zip\": \"string\",\n  \"dependents\": [\n    {\n      \"relationship\": \"spouse\",\n      \"date_of_birth\": \"1954-11-30\"\n    },\n    {\n      \"relationship\": \"spouse\",\n      \"date_of_birth\": \"1990-09-15\"\n    }\n  ],\n  \"native_employee_id\": \"string\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8804e2bf-2550-410b-bcb6-1eb0af02bb36",
+              "name": "Authentication failed or API key missing/invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Employee ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "89094ba9-3dd9-43f8-8981-bb1437c5109b",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Employee ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "18c7d678-54df-4f3b-8e2d-2f3d91f3cfa4",
+          "name": "Update an employee",
+          "request": {
+            "name": "Update an employee",
+            "description": {},
+            "url": {
+              "path": [
+                "employees",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Employee ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"personal_email\": \"<string>\",\n  \"work_email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"employment_subtype\": \"<string>\",\n  \"pay_type\": \"<string>\",\n  \"pay_rate\": \"<float>\",\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"date_of_birth\": \"<date>\",\n  \"zip\": \"<string>\",\n  \"dependents\": [\n    {\n      \"relationship\": \"<string>\",\n      \"date_of_birth\": \"<date>\"\n    },\n    {\n      \"relationship\": \"<string>\",\n      \"date_of_birth\": \"<date>\"\n    }\n  ],\n  \"pay_schedules\": [\n    {\n      \"id\": \"<string>\",\n      \"start_date\": \"<date>\",\n      \"end_date\": \"<date>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"start_date\": \"<date>\",\n      \"end_date\": \"<date>\"\n    }\n  ],\n  \"native_employee_id\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9e8cfffb-1d39-4d88-baf8-14bbd8afd868",
+              "name": "Update an employee",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Employee ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"personal_email\": \"<string>\",\n  \"work_email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"employment_subtype\": \"<string>\",\n  \"pay_type\": \"<string>\",\n  \"pay_rate\": \"<float>\",\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"date_of_birth\": \"<date>\",\n  \"zip\": \"<string>\",\n  \"dependents\": [\n    {\n      \"relationship\": \"spouse\",\n      \"date_of_birth\": \"2012-08-28\"\n    },\n    {\n      \"relationship\": \"spouse\",\n      \"date_of_birth\": \"2016-09-09\"\n    }\n  ],\n  \"pay_schedules\": [\n    {\n      \"id\": \"string\",\n      \"start_date\": \"1975-08-27\",\n      \"end_date\": \"1984-02-20\"\n    },\n    {\n      \"id\": \"string\",\n      \"start_date\": \"2025-05-13\",\n      \"end_date\": \"1954-01-02\"\n    }\n  ],\n  \"native_employee_id\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"employee_01j85kpd8yxkabyrm83d3h2ya3\",\n  \"employer_id\": \"empl_01j2j3smtwx656y2tbqm7ty6gr\",\n  \"personal_email\": \"string\",\n  \"work_email\": \"string\",\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"enrollment_events\": [\n    {\n      \"type\": \"open_enrollment\",\n      \"subtype\": \"renewal\",\n      \"plan_year\": 2024,\n      \"start_date\": \"2000-06-13\",\n      \"end_date\": \"1966-12-17\",\n      \"status\": \"active\"\n    },\n    {\n      \"type\": \"open_enrollment\",\n      \"subtype\": \"renewal\",\n      \"plan_year\": 2024,\n      \"start_date\": \"1983-03-02\",\n      \"end_date\": \"1962-12-26\",\n      \"status\": \"active\"\n    }\n  ],\n  \"pay_schedules\": [\n    {\n      \"id\": \"string\",\n      \"start_date\": \"1979-03-13\",\n      \"end_date\": \"1952-10-23\"\n    },\n    {\n      \"id\": \"string\",\n      \"start_date\": \"1996-11-07\",\n      \"end_date\": \"1950-10-05\"\n    }\n  ],\n  \"member_id\": \"mbr_01j85kpd8yxkabyrm83d3h2ya3\",\n  \"invite_link\": \"string\",\n  \"date_of_birth\": \"1995-06-24\",\n  \"zip\": \"string\",\n  \"dependents\": [\n    {\n      \"relationship\": \"spouse\",\n      \"date_of_birth\": \"1954-11-30\"\n    },\n    {\n      \"relationship\": \"spouse\",\n      \"date_of_birth\": \"1990-09-15\"\n    }\n  ],\n  \"native_employee_id\": \"string\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c32deb8-6a97-47a7-9266-43d17852ee86",
+              "name": "Authentication failed or API key missing/invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Employee ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"personal_email\": \"<string>\",\n  \"work_email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"employment_subtype\": \"<string>\",\n  \"pay_type\": \"<string>\",\n  \"pay_rate\": \"<float>\",\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"date_of_birth\": \"<date>\",\n  \"zip\": \"<string>\",\n  \"dependents\": [\n    {\n      \"relationship\": \"spouse\",\n      \"date_of_birth\": \"2012-08-28\"\n    },\n    {\n      \"relationship\": \"spouse\",\n      \"date_of_birth\": \"2016-09-09\"\n    }\n  ],\n  \"pay_schedules\": [\n    {\n      \"id\": \"string\",\n      \"start_date\": \"1975-08-27\",\n      \"end_date\": \"1984-02-20\"\n    },\n    {\n      \"id\": \"string\",\n      \"start_date\": \"2025-05-13\",\n      \"end_date\": \"1954-01-02\"\n    }\n  ],\n  \"native_employee_id\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e50f71a5-1588-435b-b225-b1a1a6faeeee",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Employee ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"personal_email\": \"<string>\",\n  \"work_email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"employment_subtype\": \"<string>\",\n  \"pay_type\": \"<string>\",\n  \"pay_rate\": \"<float>\",\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"date_of_birth\": \"<date>\",\n  \"zip\": \"<string>\",\n  \"dependents\": [\n    {\n      \"relationship\": \"spouse\",\n      \"date_of_birth\": \"2012-08-28\"\n    },\n    {\n      \"relationship\": \"spouse\",\n      \"date_of_birth\": \"2016-09-09\"\n    }\n  ],\n  \"pay_schedules\": [\n    {\n      \"id\": \"string\",\n      \"start_date\": \"1975-08-27\",\n      \"end_date\": \"1984-02-20\"\n    },\n    {\n      \"id\": \"string\",\n      \"start_date\": \"2025-05-13\",\n      \"end_date\": \"1954-01-02\"\n    }\n  ],\n  \"native_employee_id\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://partners.thatchcloud.com/api/partners/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5d7d0610-1b23-4478-a566-988ac82b1c9b",
+    "name": "Thatch for Platforms Deductions Employees API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Thatch for Platforms is a set of REST APIs and embeddable JavaScript components that let partners bring ICHRA (Individual Coverage Health Reimbursement Arrangement) benefits to their customers. Partners onboard employers, manage employees, run the employer onboarding flow through an embedded iframe, track enrollments and members, model pay schedules, and retrieve payroll deductions. Access is limited to approved partners; contact platforms@thatch.com to set up an account and generate an API key in the Thatch dashboard.\n\nContact Support:\n Name: Thatch for Platforms\n Email: platforms@thatch.com",
+      "type": "text/plain"
+    }
+  }
+}

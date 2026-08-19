@@ -1,0 +1,375 @@
+{
+  "item": [
+    {
+      "id": "b7ea7777-c028-4f3c-b584-8a5cfa2f5f68",
+      "name": "Members",
+      "description": {
+        "content": "Members represent employees enrolled in plans.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "39524f3a-e709-44f2-8c88-6d3322c88a10",
+          "name": "List members",
+          "request": {
+            "name": "List members",
+            "description": {},
+            "url": {
+              "path": [
+                "members"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page[number]",
+                  "value": "1",
+                  "description": "Page number"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[size]",
+                  "value": "20",
+                  "description": "Number of items per page. Must be between 1 and 1,000 (inclusive). Defaults to 20."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5e3f61ee-ae1c-4616-9133-493e90617210",
+              "name": "List members",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"mbr_01j85kpd8yxkabyrm83d3h2ya3\",\n      \"employee_id\": \"employee_01j7h53r7gpd0q0wtx4pcfcska\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"address_line1\": \"string\",\n      \"address_line2\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zip\": \"string\",\n      \"date_of_birth\": \"2026-01-13\",\n      \"allowance\": {\n        \"amount\": 8488,\n        \"currency_code\": \"USD\"\n      },\n      \"balance\": {\n        \"amount\": 3498,\n        \"currency_code\": \"USD\"\n      }\n    },\n    {\n      \"id\": \"mbr_01j85kpd8yxkabyrm83d3h2ya3\",\n      \"employee_id\": \"employee_01j7h53r7gpd0q0wtx4pcfcska\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"address_line1\": \"string\",\n      \"address_line2\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zip\": \"string\",\n      \"date_of_birth\": \"1968-11-12\",\n      \"allowance\": {\n        \"amount\": 5195,\n        \"currency_code\": \"USD\"\n      },\n      \"balance\": {\n        \"amount\": 7682,\n        \"currency_code\": \"USD\"\n      }\n    }\n  ],\n  \"pagination\": {\n    \"total_records\": 25,\n    \"current_page\": 1,\n    \"total_pages\": 3,\n    \"next_page\": 2,\n    \"prev_page\": 0\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5ee4394-5aea-4459-9e00-b1c28b6bfb99",
+              "name": "Authentication failed or API key missing/invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1a215626-282c-437d-bd6d-1077ba625e89",
+          "name": "Get a member",
+          "request": {
+            "name": "Get a member",
+            "description": {},
+            "url": {
+              "path": [
+                "members",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Member ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8fb5900c-90a5-4ed7-8cc5-67081ec6f4c2",
+              "name": "Get a member",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Member ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"mbr_01j85kpd8yxkabyrm83d3h2ya3\",\n  \"employee_id\": \"employee_01j7h53r7gpd0q0wtx4pcfcska\",\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"address_line1\": \"string\",\n  \"address_line2\": \"string\",\n  \"city\": \"string\",\n  \"state\": \"string\",\n  \"zip\": \"string\",\n  \"date_of_birth\": \"2023-05-29\",\n  \"allowance\": {\n    \"amount\": 5508,\n    \"currency_code\": \"USD\"\n  },\n  \"balance\": {\n    \"amount\": 2775,\n    \"currency_code\": \"USD\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1178abf-4a16-4de5-a5a0-79dea51bbf34",
+              "name": "Authentication failed or API key missing/invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Member ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "714a1cae-ef0f-4bd0-bbe8-e73efaf7bb9e",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Member ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://partners.thatchcloud.com/api/partners/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "863220ad-d429-44be-ba1a-98f76a5f0f56",
+    "name": "Thatch for Platforms Deductions Members API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Thatch for Platforms is a set of REST APIs and embeddable JavaScript components that let partners bring ICHRA (Individual Coverage Health Reimbursement Arrangement) benefits to their customers. Partners onboard employers, manage employees, run the employer onboarding flow through an embedded iframe, track enrollments and members, model pay schedules, and retrieve payroll deductions. Access is limited to approved partners; contact platforms@thatch.com to set up an account and generate an API key in the Thatch dashboard.\n\nContact Support:\n Name: Thatch for Platforms\n Email: platforms@thatch.com",
+      "type": "text/plain"
+    }
+  }
+}

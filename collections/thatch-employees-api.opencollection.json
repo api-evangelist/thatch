@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Thatch for Platforms Deductions Employees API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Employees",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List employees",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://partners.thatchcloud.com/api/partners/v1/employees",
+            "params": [
+              {
+                "name": "employer_id",
+                "value": "",
+                "type": "query",
+                "description": "ID of the employee's employer"
+              },
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query",
+                "description": "Page number"
+              },
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page. Must be between 1 and 1,000 (inclusive). Defaults to 20."
+              }
+            ]
+          },
+          "docs": "List employees"
+        },
+        {
+          "info": {
+            "name": "Create an employee",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://partners.thatchcloud.com/api/partners/v1/employees",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an employee"
+        },
+        {
+          "info": {
+            "name": "Get an employee",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://partners.thatchcloud.com/api/partners/v1/employees/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Employee ID"
+              }
+            ]
+          },
+          "docs": "Get an employee"
+        },
+        {
+          "info": {
+            "name": "Update an employee",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://partners.thatchcloud.com/api/partners/v1/employees/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Employee ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an employee"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

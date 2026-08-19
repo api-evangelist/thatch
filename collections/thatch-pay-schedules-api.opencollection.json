@@ -1,0 +1,146 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Thatch for Platforms Deductions Pay Schedules API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pay Schedules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List pay schedules for an employer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://partners.thatchcloud.com/api/partners/v1/employers/:employer_id/pay_schedules",
+            "params": [
+              {
+                "name": "employer_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "include_deactivated",
+                "value": "",
+                "type": "query",
+                "description": "Include deactivated pay schedules"
+              }
+            ]
+          },
+          "docs": "List pay schedules for an employer"
+        },
+        {
+          "info": {
+            "name": "Create a pay schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://partners.thatchcloud.com/api/partners/v1/employers/:employer_id/pay_schedules",
+            "params": [
+              {
+                "name": "employer_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a pay schedule"
+        },
+        {
+          "info": {
+            "name": "Get a specific pay schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://partners.thatchcloud.com/api/partners/v1/employers/:employer_id/pay_schedules/:pay_schedule_id",
+            "params": [
+              {
+                "name": "employer_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "pay_schedule_id",
+                "value": "",
+                "type": "path",
+                "description": "Pay schedule ID"
+              }
+            ]
+          },
+          "docs": "Get a specific pay schedule"
+        },
+        {
+          "info": {
+            "name": "Update a pay schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://partners.thatchcloud.com/api/partners/v1/employers/:employer_id/pay_schedules/:pay_schedule_id",
+            "params": [
+              {
+                "name": "employer_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "pay_schedule_id",
+                "value": "",
+                "type": "path",
+                "description": "Pay schedule ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a pay schedule"
+        },
+        {
+          "info": {
+            "name": "Deactivate a pay schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://partners.thatchcloud.com/api/partners/v1/employers/:employer_id/pay_schedules/:pay_schedule_id",
+            "params": [
+              {
+                "name": "employer_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "pay_schedule_id",
+                "value": "",
+                "type": "path",
+                "description": "Pay schedule ID"
+              }
+            ]
+          },
+          "docs": "Deactivate a pay schedule"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Thatch for Platforms Deductions Enrollments API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Enrollments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List enrollments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://partners.thatchcloud.com/api/partners/v1/enrollments",
+            "params": [
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query",
+                "description": "Page number"
+              },
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page. Must be between 1 and 1,000 (inclusive). Defaults to 20."
+              },
+              {
+                "name": "member_id",
+                "value": "mbr_01j7h53qa133q71z25n7a3w0n4",
+                "type": "query",
+                "description": "Member ID"
+              },
+              {
+                "name": "status",
+                "value": "completed",
+                "type": "query",
+                "description": "Enrollment status"
+              }
+            ]
+          },
+          "docs": "List enrollments"
+        },
+        {
+          "info": {
+            "name": "Get an enrollment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://partners.thatchcloud.com/api/partners/v1/enrollments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "enrlmt_01j7h53qgy8m2q1f7563hbvpqj",
+                "type": "path",
+                "description": "Enrollment ID"
+              }
+            ]
+          },
+          "docs": "Get an enrollment"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

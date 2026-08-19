@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Thatch for Platforms Deductions Employer onboarding sessions API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Employer onboarding sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an employer onboarding session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://partners.thatchcloud.com/api/partners/v1/employer_onboarding_sessions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an employer onboarding session"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

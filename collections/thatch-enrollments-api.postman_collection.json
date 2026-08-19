@@ -1,0 +1,403 @@
+{
+  "item": [
+    {
+      "id": "766c1031-4cea-40e3-8a69-b60289374c72",
+      "name": "Enrollments",
+      "description": {
+        "content": "Enrollments use member objects to track employee coverage status.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "15532819-47f4-4fa0-adaf-e634893cac6a",
+          "name": "List enrollments",
+          "request": {
+            "name": "List enrollments",
+            "description": {},
+            "url": {
+              "path": [
+                "enrollments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page[number]",
+                  "value": "1",
+                  "description": "Page number"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[size]",
+                  "value": "20",
+                  "description": "Number of items per page. Must be between 1 and 1,000 (inclusive). Defaults to 20."
+                },
+                {
+                  "disabled": false,
+                  "key": "member_id",
+                  "value": "<string>",
+                  "description": "Member ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Enrollment status"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2545e1e8-1265-4596-9361-62fb6cf60194",
+              "name": "List enrollments",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrollments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "key": "member_id",
+                      "value": "mbr_01j7h53qa133q71z25n7a3w0n4"
+                    },
+                    {
+                      "key": "status",
+                      "value": "completed"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"enrlmt_01j7h53qgy8m2q1f7563hbvpqj\",\n      \"member_id\": \"mbr_01j7h53qa133q71z25n7a3w0n4\",\n      \"coverage_types\": [\n        \"medical\"\n      ],\n      \"status\": \"member_confirmed\",\n      \"status_events\": [\n        {\n          \"status\": \"completed\",\n          \"timestamp\": \"2017-02-21T23:50:52.251Z\"\n        },\n        {\n          \"status\": \"completed\",\n          \"timestamp\": \"2026-06-20T07:30:04.884Z\"\n        }\n      ],\n      \"plan\": {\n        \"id\": \"mdpln_01j7h53nf2j0hc5a235b6xmxn4\",\n        \"name\": \"Anthem Bronze 60 D HMO\",\n        \"carrier_name\": \"Anthem\",\n        \"hsa_eligible\": true,\n        \"logo_url\": \"string\",\n        \"sbc_url\": \"string\"\n      },\n      \"plan_id\": \"string\",\n      \"plan_code\": \"standard\",\n      \"premium\": {\n        \"amount\": 3800,\n        \"currency_code\": \"USD\"\n      },\n      \"broker\": {\n        \"name\": \"Thatch Health Insurance Services LLC\",\n        \"npn\": \"20782309\"\n      },\n      \"enrollment_coverages\": [\n        {\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"relationship\": \"self\",\n          \"date_of_birth\": \"1954-07-05\",\n          \"gender\": \"female\",\n          \"start_date\": \"2001-07-25\",\n          \"end_date\": \"1974-03-22\"\n        },\n        {\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"relationship\": \"self\",\n          \"date_of_birth\": \"1977-05-28\",\n          \"gender\": \"female\",\n          \"start_date\": \"2017-03-10\",\n          \"end_date\": \"1989-01-05\"\n        }\n      ]\n    },\n    {\n      \"id\": \"enrlmt_01j7h53qgy8m2q1f7563hbvpqj\",\n      \"member_id\": \"mbr_01j7h53qa133q71z25n7a3w0n4\",\n      \"coverage_types\": [\n        \"medical\"\n      ],\n      \"status\": \"member_confirmed\",\n      \"status_events\": [\n        {\n          \"status\": \"completed\",\n          \"timestamp\": \"1984-05-17T00:59:26.009Z\"\n        },\n        {\n          \"status\": \"completed\",\n          \"timestamp\": \"1968-05-15T12:33:53.685Z\"\n        }\n      ],\n      \"plan\": {\n        \"id\": \"mdpln_01j7h53nf2j0hc5a235b6xmxn4\",\n        \"name\": \"Anthem Bronze 60 D HMO\",\n        \"carrier_name\": \"Anthem\",\n        \"hsa_eligible\": false,\n        \"logo_url\": \"string\",\n        \"sbc_url\": \"string\"\n      },\n      \"plan_id\": \"string\",\n      \"plan_code\": \"standard\",\n      \"premium\": {\n        \"amount\": 5777,\n        \"currency_code\": \"USD\"\n      },\n      \"broker\": {\n        \"name\": \"Thatch Health Insurance Services LLC\",\n        \"npn\": \"20782309\"\n      },\n      \"enrollment_coverages\": [\n        {\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"relationship\": \"self\",\n          \"date_of_birth\": \"1972-06-14\",\n          \"gender\": \"female\",\n          \"start_date\": \"1971-06-14\",\n          \"end_date\": \"2008-11-22\"\n        },\n        {\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"relationship\": \"self\",\n          \"date_of_birth\": \"1967-12-24\",\n          \"gender\": \"female\",\n          \"start_date\": \"1983-04-29\",\n          \"end_date\": \"1955-11-30\"\n        }\n      ]\n    }\n  ],\n  \"pagination\": {\n    \"total_records\": 25,\n    \"current_page\": 1,\n    \"total_pages\": 3,\n    \"next_page\": 2,\n    \"prev_page\": 0\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0cb1c105-f646-4324-bc23-1fd18658aaf9",
+              "name": "Authentication failed or API key missing/invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrollments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "key": "member_id",
+                      "value": "mbr_01j7h53qa133q71z25n7a3w0n4"
+                    },
+                    {
+                      "key": "status",
+                      "value": "completed"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "53eaf3a0-61a3-4ad2-bcc5-321e7dc47db2",
+          "name": "Get an enrollment",
+          "request": {
+            "name": "Get an enrollment",
+            "description": {},
+            "url": {
+              "path": [
+                "enrollments",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Enrollment ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "45b3b418-00c2-43a4-bbdf-6c8a93acc417",
+              "name": "Get an enrollment",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrollments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Enrollment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"enrlmt_01j7h53qgy8m2q1f7563hbvpqj\",\n  \"member_id\": \"mbr_01j7h53qa133q71z25n7a3w0n4\",\n  \"coverage_types\": [\n    \"medical\"\n  ],\n  \"status\": \"carrier_processing\",\n  \"status_events\": [\n    {\n      \"status\": \"completed\",\n      \"timestamp\": \"2019-05-08T15:31:04.715Z\"\n    },\n    {\n      \"status\": \"completed\",\n      \"timestamp\": \"1984-07-11T10:54:51.142Z\"\n    }\n  ],\n  \"plan\": {\n    \"id\": \"mdpln_01j7h53nf2j0hc5a235b6xmxn4\",\n    \"name\": \"Anthem Bronze 60 D HMO\",\n    \"carrier_name\": \"Anthem\",\n    \"hsa_eligible\": false,\n    \"logo_url\": \"string\",\n    \"sbc_url\": \"string\"\n  },\n  \"plan_id\": \"string\",\n  \"plan_code\": \"standard\",\n  \"premium\": {\n    \"amount\": 7668,\n    \"currency_code\": \"USD\"\n  },\n  \"broker\": {\n    \"name\": \"Thatch Health Insurance Services LLC\",\n    \"npn\": \"20782309\"\n  },\n  \"enrollment_coverages\": [\n    {\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"relationship\": \"self\",\n      \"date_of_birth\": \"1982-07-04\",\n      \"gender\": \"female\",\n      \"start_date\": \"2016-10-26\",\n      \"end_date\": \"1960-06-02\"\n    },\n    {\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"relationship\": \"self\",\n      \"date_of_birth\": \"1981-12-30\",\n      \"gender\": \"female\",\n      \"start_date\": \"1951-06-09\",\n      \"end_date\": \"2004-10-22\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf40ce40-4301-4604-b5bd-d0c2cf7ae51d",
+              "name": "Authentication failed or API key missing/invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrollments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Enrollment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6cc463f0-90c9-451f-b3a1-a137d86c31f8",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrollments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Enrollment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://partners.thatchcloud.com/api/partners/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "84606f73-1d5f-4b08-a99a-d6b80d508d0c",
+    "name": "Thatch for Platforms Deductions Enrollments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Thatch for Platforms is a set of REST APIs and embeddable JavaScript components that let partners bring ICHRA (Individual Coverage Health Reimbursement Arrangement) benefits to their customers. Partners onboard employers, manage employees, run the employer onboarding flow through an embedded iframe, track enrollments and members, model pay schedules, and retrieve payroll deductions. Access is limited to approved partners; contact platforms@thatch.com to set up an account and generate an API key in the Thatch dashboard.\n\nContact Support:\n Name: Thatch for Platforms\n Email: platforms@thatch.com",
+      "type": "text/plain"
+    }
+  }
+}

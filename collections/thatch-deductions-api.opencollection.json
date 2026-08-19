@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Thatch for Platforms Deductions API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Deductions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List employee payroll deductions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://partners.thatchcloud.com/api/partners/v1/deductions",
+            "params": [
+              {
+                "name": "employer_id",
+                "value": "empl_01j9w59xh2p5d03z0zxgcv2vag",
+                "type": "query",
+                "description": "Employer ID"
+              },
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query",
+                "description": "Page number"
+              },
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page. Must be between 1 and 1,000 (inclusive). Defaults to 20."
+              },
+              {
+                "name": "periods[start_after]",
+                "value": "2024-01-01",
+                "type": "query",
+                "description": "Periods with pay date on or after date, in ISO 8601 format"
+              },
+              {
+                "name": "periods[end_before]",
+                "value": "2024-01-01",
+                "type": "query",
+                "description": "Periods with pay date on or before date, in ISO 8601 format"
+              }
+            ]
+          },
+          "docs": "List employee payroll deductions"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

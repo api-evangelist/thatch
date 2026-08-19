@@ -2,30 +2,73 @@ generated: '2026-07-21'
 method: derived
 status: candidate
 source: openapi/thatch-partners-openapi.yml
-notes: >-
-  No official hosted/remote MCP server was found for Thatch for Platforms. The
-  tool list below is a candidate derived one-to-one from the OpenAPI operations
-  so an MCP server could be forged from the spec.
+notes: No official hosted/remote MCP server was found for Thatch for Platforms. The tool list below is
+  a candidate derived one-to-one from the OpenAPI operations so an MCP server could be forged from the
+  spec.
 server:
   name: thatch
   transport: http
 tools:
-  - { name: list_deductions, description: List employee payroll deductions, source_operation: openapi/thatch-partners-openapi.yml#listDeductions }
-  - { name: create_employee, description: Create an employee, source_operation: openapi/thatch-partners-openapi.yml#createEmployee }
-  - { name: get_employee, description: Get an employee, source_operation: openapi/thatch-partners-openapi.yml#getEmployee }
-  - { name: list_employees, description: List employees, source_operation: openapi/thatch-partners-openapi.yml#listEmployees }
-  - { name: update_employee, description: Update an employee, source_operation: openapi/thatch-partners-openapi.yml#updateEmployee }
-  - { name: create_employer_onboarding_session, description: Create an employer onboarding session, source_operation: openapi/thatch-partners-openapi.yml#createEmployerOnboardingSession }
-  - { name: create_employer, description: Create an employer, source_operation: openapi/thatch-partners-openapi.yml#createEmployer }
-  - { name: get_employer, description: Get an employer, source_operation: openapi/thatch-partners-openapi.yml#getEmployer }
-  - { name: list_employers, description: List employers, source_operation: openapi/thatch-partners-openapi.yml#listEmployers }
-  - { name: update_employer, description: Update an employer, source_operation: openapi/thatch-partners-openapi.yml#updateEmployer }
-  - { name: get_enrollment, description: Get an enrollment, source_operation: openapi/thatch-partners-openapi.yml#getEnrollment }
-  - { name: list_enrollments, description: List enrollments, source_operation: openapi/thatch-partners-openapi.yml#listEnrollments }
-  - { name: get_member, description: Get a member, source_operation: openapi/thatch-partners-openapi.yml#getMember }
-  - { name: list_members, description: List members, source_operation: openapi/thatch-partners-openapi.yml#listMembers }
-  - { name: create_pay_schedule, description: Create a pay schedule, source_operation: openapi/thatch-partners-openapi.yml#createPaySchedule }
-  - { name: get_pay_schedule, description: Get a pay schedule, source_operation: openapi/thatch-partners-openapi.yml#getPaySchedule }
-  - { name: list_pay_schedules, description: List pay schedules, source_operation: openapi/thatch-partners-openapi.yml#listPaySchedules }
-  - { name: update_pay_schedule, description: Update a pay schedule, source_operation: openapi/thatch-partners-openapi.yml#updatePaySchedule }
-  - { name: deactivate_pay_schedule, description: Deactivate a pay schedule, source_operation: openapi/thatch-partners-openapi.yml#deactivatePaySchedule }
+- name: list_deductions
+  description: List employee payroll deductions
+  source_operation: openapi/thatch-partners-openapi.yml#listDeductions
+- name: create_employee
+  description: Create an employee
+  source_operation: openapi/thatch-partners-openapi.yml#createEmployee
+- name: get_employee
+  description: Get an employee
+  source_operation: openapi/thatch-partners-openapi.yml#getEmployee
+- name: list_employees
+  description: List employees
+  source_operation: openapi/thatch-partners-openapi.yml#listEmployees
+- name: update_employee
+  description: Update an employee
+  source_operation: openapi/thatch-partners-openapi.yml#updateEmployee
+- name: create_employer_onboarding_session
+  description: Create an employer onboarding session
+  source_operation: openapi/thatch-partners-openapi.yml#createEmployerOnboardingSession
+- name: create_employer
+  description: Create an employer
+  source_operation: openapi/thatch-partners-openapi.yml#createEmployer
+- name: get_employer
+  description: Get an employer
+  source_operation: openapi/thatch-partners-openapi.yml#getEmployer
+- name: list_employers
+  description: List employers
+  source_operation: openapi/thatch-partners-openapi.yml#listEmployers
+- name: update_employer
+  description: Update an employer
+  source_operation: openapi/thatch-partners-openapi.yml#updateEmployer
+- name: get_enrollment
+  description: Get an enrollment
+  source_operation: openapi/thatch-partners-openapi.yml#getEnrollment
+- name: list_enrollments
+  description: List enrollments
+  source_operation: openapi/thatch-partners-openapi.yml#listEnrollments
+- name: get_member
+  description: Get a member
+  source_operation: openapi/thatch-partners-openapi.yml#getMember
+- name: list_members
+  description: List members
+  source_operation: openapi/thatch-partners-openapi.yml#listMembers
+- name: create_pay_schedule
+  description: Create a pay schedule
+  source_operation: openapi/thatch-partners-openapi.yml#createPaySchedule
+- name: get_pay_schedule
+  description: Get a pay schedule
+  source_operation: openapi/thatch-partners-openapi.yml#getPaySchedule
+- name: list_pay_schedules
+  description: List pay schedules
+  source_operation: openapi/thatch-partners-openapi.yml#listPaySchedules
+- name: update_pay_schedule
+  description: Update a pay schedule
+  source_operation: openapi/thatch-partners-openapi.yml#updatePaySchedule
+- name: deactivate_pay_schedule
+  description: Deactivate a pay schedule
+  source_operation: openapi/thatch-partners-openapi.yml#deactivatePaySchedule
+deployment:
+  mode: none
+  verified: derived
+  tools: 19
+  checked: '2026-08-12'
+  source: catalog MCP census

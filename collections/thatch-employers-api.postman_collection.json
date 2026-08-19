@@ -1,0 +1,744 @@
+{
+  "item": [
+    {
+      "id": "1c70761e-2ea0-4710-a7af-635fb8719cf8",
+      "name": "Employers",
+      "description": {
+        "content": "Platforms onboard employers into Thatch, and have employees enrolled in plans.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "930ef19f-227f-4a01-972e-57e42512e07a",
+          "name": "Create an employer",
+          "request": {
+            "name": "Create an employer",
+            "description": {},
+            "url": {
+              "path": [
+                "employers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address_line1\": \"<string>\",\n  \"business_type\": \"<string>\",\n  \"city\": \"<string>\",\n  \"ein\": \"<string>\",\n  \"email\": \"<string>\",\n  \"name\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"dba\": \"<string>\",\n  \"industry_code\": \"<string>\",\n  \"address_line2\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"offers_health_insurance_today\": \"<boolean>\",\n  \"current_health_insurance\": {\n    \"individual_deductible\": \"<integer>\",\n    \"individual_oop_max\": \"<integer>\",\n    \"network_type\": \"<string>\",\n    \"metal_tier\": \"<string>\"\n  },\n  \"coverage_start_date\": \"<date>\",\n  \"pricing\": {\n    \"platform_fee\": {\n      \"amount\": \"<integer>\",\n      \"currency_code\": \"<string>\"\n    }\n  },\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "199bd56f-b42c-4fd5-b821-fb3c24660f88",
+              "name": "Create an employer",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address_line1\": \"<string>\",\n  \"business_type\": \"<string>\",\n  \"city\": \"<string>\",\n  \"ein\": \"<string>\",\n  \"email\": \"<string>\",\n  \"name\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"dba\": \"<string>\",\n  \"industry_code\": \"<string>\",\n  \"address_line2\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"offers_health_insurance_today\": \"<boolean>\",\n  \"current_health_insurance\": {\n    \"individual_deductible\": 1500,\n    \"individual_oop_max\": 5000,\n    \"network_type\": \"hmo\",\n    \"metal_tier\": \"silver\"\n  },\n  \"coverage_start_date\": \"<date>\",\n  \"pricing\": {\n    \"platform_fee\": {\n      \"amount\": 2961,\n      \"currency_code\": \"USD\"\n    }\n  },\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"empl_01j2j3smtwx656y2tbqm7ty6gr\",\n  \"onboarding_status\": \"employees_invited\",\n  \"name\": \"string\",\n  \"business_type\": \"string\",\n  \"ein\": \"string\",\n  \"dba\": \"string\",\n  \"address_line1\": \"string\",\n  \"address_line2\": \"string\",\n  \"city\": \"string\",\n  \"state\": \"string\",\n  \"zip\": \"string\",\n  \"phone_number\": \"string\",\n  \"industry\": \"professional_scientific_and_technical_services\",\n  \"lifecycle_events\": [\n    {\n      \"id\": \"lcevent_01j2j3smtwx656y2tbqm7ty6gr\",\n      \"event_type\": \"employees_invited\",\n      \"timestamp\": \"1992-01-30T00:25:40.906Z\"\n    },\n    {\n      \"id\": \"lcevent_01j2j3smtwx656y2tbqm7ty6gr\",\n      \"event_type\": \"employees_invited\",\n      \"timestamp\": \"1967-08-15T00:43:26.770Z\"\n    }\n  ],\n  \"pay_schedules\": [\n    {\n      \"id\": \"paysch_1234\",\n      \"name\": \"Bi-Weekly Payroll\",\n      \"reference_pay_date\": \"2024-07-24\",\n      \"start_date\": \"1999-05-10\",\n      \"end_date\": \"1992-01-04\",\n      \"frequency\": \"bi_weekly\",\n      \"first_day\": 6915,\n      \"second_day\": 6004,\n      \"bank_closure_strategy\": \"before\",\n      \"remote_id\": \"remote_123\",\n      \"active\": false\n    },\n    {\n      \"id\": \"paysch_1234\",\n      \"name\": \"Bi-Weekly Payroll\",\n      \"reference_pay_date\": \"1992-12-15\",\n      \"start_date\": \"1959-05-29\",\n      \"end_date\": \"1973-02-22\",\n      \"frequency\": \"bi_weekly\",\n      \"first_day\": 6978,\n      \"second_day\": 1712,\n      \"bank_closure_strategy\": \"before\",\n      \"remote_id\": \"remote_123\",\n      \"active\": true\n    }\n  ],\n  \"pricing\": {\n    \"platform_fee\": {\n      \"amount\": 1734,\n      \"currency_code\": \"USD\"\n    }\n  },\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "78a49ca1-9571-4dd2-a47e-450bc45169f3",
+              "name": "Authentication failed or API key missing/invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address_line1\": \"<string>\",\n  \"business_type\": \"<string>\",\n  \"city\": \"<string>\",\n  \"ein\": \"<string>\",\n  \"email\": \"<string>\",\n  \"name\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"dba\": \"<string>\",\n  \"industry_code\": \"<string>\",\n  \"address_line2\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"offers_health_insurance_today\": \"<boolean>\",\n  \"current_health_insurance\": {\n    \"individual_deductible\": 1500,\n    \"individual_oop_max\": 5000,\n    \"network_type\": \"hmo\",\n    \"metal_tier\": \"silver\"\n  },\n  \"coverage_start_date\": \"<date>\",\n  \"pricing\": {\n    \"platform_fee\": {\n      \"amount\": 2961,\n      \"currency_code\": \"USD\"\n    }\n  },\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa7252a7-6612-4a7f-85c7-8d620d000724",
+          "name": "List employers",
+          "request": {
+            "name": "List employers",
+            "description": {},
+            "url": {
+              "path": [
+                "employers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page[number]",
+                  "value": "1",
+                  "description": "Page number"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[size]",
+                  "value": "20",
+                  "description": "Number of items per page. Must be between 1 and 1,000 (inclusive). Defaults to 20."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "303189fb-6ea8-4690-9b82-e66c22bd13fc",
+              "name": "List employers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"empl_01j2j3smtwx656y2tbqm7ty6gr\",\n      \"onboarding_status\": \"employees_invited\",\n      \"name\": \"string\",\n      \"business_type\": \"string\",\n      \"ein\": \"string\",\n      \"dba\": \"string\",\n      \"address_line1\": \"string\",\n      \"address_line2\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zip\": \"string\",\n      \"phone_number\": \"string\",\n      \"industry\": \"professional_scientific_and_technical_services\",\n      \"lifecycle_events\": [\n        {\n          \"id\": \"lcevent_01j2j3smtwx656y2tbqm7ty6gr\",\n          \"event_type\": \"employees_invited\",\n          \"timestamp\": \"1976-01-04T16:24:35.023Z\"\n        },\n        {\n          \"id\": \"lcevent_01j2j3smtwx656y2tbqm7ty6gr\",\n          \"event_type\": \"employees_invited\",\n          \"timestamp\": \"1991-08-14T16:05:29.781Z\"\n        }\n      ],\n      \"pay_schedules\": [\n        {\n          \"id\": \"paysch_1234\",\n          \"name\": \"Bi-Weekly Payroll\",\n          \"reference_pay_date\": \"2024-10-08\",\n          \"start_date\": \"1963-11-27\",\n          \"end_date\": \"2006-05-05\",\n          \"frequency\": \"bi_weekly\",\n          \"first_day\": 2187,\n          \"second_day\": 6977,\n          \"bank_closure_strategy\": \"before\",\n          \"remote_id\": \"remote_123\",\n          \"active\": false\n        },\n        {\n          \"id\": \"paysch_1234\",\n          \"name\": \"Bi-Weekly Payroll\",\n          \"reference_pay_date\": \"1963-01-03\",\n          \"start_date\": \"1980-08-09\",\n          \"end_date\": \"1972-04-17\",\n          \"frequency\": \"bi_weekly\",\n          \"first_day\": 646,\n          \"second_day\": 9385,\n          \"bank_closure_strategy\": \"before\",\n          \"remote_id\": \"remote_123\",\n          \"active\": true\n        }\n      ],\n      \"pricing\": {\n        \"platform_fee\": {\n          \"amount\": 7278,\n          \"currency_code\": \"USD\"\n        }\n      },\n      \"metadata\": {\n        \"key_0\": \"string\"\n      }\n    },\n    {\n      \"id\": \"empl_01j2j3smtwx656y2tbqm7ty6gr\",\n      \"onboarding_status\": \"employees_invited\",\n      \"name\": \"string\",\n      \"business_type\": \"string\",\n      \"ein\": \"string\",\n      \"dba\": \"string\",\n      \"address_line1\": \"string\",\n      \"address_line2\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zip\": \"string\",\n      \"phone_number\": \"string\",\n      \"industry\": \"professional_scientific_and_technical_services\",\n      \"lifecycle_events\": [\n        {\n          \"id\": \"lcevent_01j2j3smtwx656y2tbqm7ty6gr\",\n          \"event_type\": \"employees_invited\",\n          \"timestamp\": \"1974-03-27T22:11:36.494Z\"\n        },\n        {\n          \"id\": \"lcevent_01j2j3smtwx656y2tbqm7ty6gr\",\n          \"event_type\": \"employees_invited\",\n          \"timestamp\": \"1961-06-05T11:41:23.265Z\"\n        }\n      ],\n      \"pay_schedules\": [\n        {\n          \"id\": \"paysch_1234\",\n          \"name\": \"Bi-Weekly Payroll\",\n          \"reference_pay_date\": \"1993-05-17\",\n          \"start_date\": \"1958-09-20\",\n          \"end_date\": \"1994-06-17\",\n          \"frequency\": \"bi_weekly\",\n          \"first_day\": 9547,\n          \"second_day\": 3704,\n          \"bank_closure_strategy\": \"before\",\n          \"remote_id\": \"remote_123\",\n          \"active\": false\n        },\n        {\n          \"id\": \"paysch_1234\",\n          \"name\": \"Bi-Weekly Payroll\",\n          \"reference_pay_date\": \"1962-08-20\",\n          \"start_date\": \"2020-01-29\",\n          \"end_date\": \"1952-11-16\",\n          \"frequency\": \"bi_weekly\",\n          \"first_day\": 9922,\n          \"second_day\": 398,\n          \"bank_closure_strategy\": \"before\",\n          \"remote_id\": \"remote_123\",\n          \"active\": false\n        }\n      ],\n      \"pricing\": {\n        \"platform_fee\": {\n          \"amount\": 2495,\n          \"currency_code\": \"USD\"\n        }\n      },\n      \"metadata\": {\n        \"key_0\": \"string\"\n      }\n    }\n  ],\n  \"pagination\": {\n    \"total_records\": 25,\n    \"current_page\": 1,\n    \"total_pages\": 3,\n    \"next_page\": 2,\n    \"prev_page\": 0\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c41df6cf-6759-477d-830e-5ad48d0784a3",
+              "name": "Authentication failed or API key missing/invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f18df045-c5e1-4fba-9924-23da3a2485c9",
+          "name": "Get an employer",
+          "request": {
+            "name": "Get an employer",
+            "description": {},
+            "url": {
+              "path": [
+                "employers",
+                ":employer_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employer_id",
+                  "description": "(Required) Employer ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cb1d0484-50ef-472d-930b-1c81af9d8bc6",
+              "name": "Get an employer",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers",
+                    ":employer_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employer_id",
+                      "description": "(Required) Employer ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"empl_01j2j3smtwx656y2tbqm7ty6gr\",\n  \"onboarding_status\": \"employees_invited\",\n  \"name\": \"string\",\n  \"business_type\": \"string\",\n  \"ein\": \"string\",\n  \"dba\": \"string\",\n  \"address_line1\": \"string\",\n  \"address_line2\": \"string\",\n  \"city\": \"string\",\n  \"state\": \"string\",\n  \"zip\": \"string\",\n  \"phone_number\": \"string\",\n  \"industry\": \"professional_scientific_and_technical_services\",\n  \"lifecycle_events\": [\n    {\n      \"id\": \"lcevent_01j2j3smtwx656y2tbqm7ty6gr\",\n      \"event_type\": \"employees_invited\",\n      \"timestamp\": \"1992-01-30T00:25:40.906Z\"\n    },\n    {\n      \"id\": \"lcevent_01j2j3smtwx656y2tbqm7ty6gr\",\n      \"event_type\": \"employees_invited\",\n      \"timestamp\": \"1967-08-15T00:43:26.770Z\"\n    }\n  ],\n  \"pay_schedules\": [\n    {\n      \"id\": \"paysch_1234\",\n      \"name\": \"Bi-Weekly Payroll\",\n      \"reference_pay_date\": \"2024-07-24\",\n      \"start_date\": \"1999-05-10\",\n      \"end_date\": \"1992-01-04\",\n      \"frequency\": \"bi_weekly\",\n      \"first_day\": 6915,\n      \"second_day\": 6004,\n      \"bank_closure_strategy\": \"before\",\n      \"remote_id\": \"remote_123\",\n      \"active\": false\n    },\n    {\n      \"id\": \"paysch_1234\",\n      \"name\": \"Bi-Weekly Payroll\",\n      \"reference_pay_date\": \"1992-12-15\",\n      \"start_date\": \"1959-05-29\",\n      \"end_date\": \"1973-02-22\",\n      \"frequency\": \"bi_weekly\",\n      \"first_day\": 6978,\n      \"second_day\": 1712,\n      \"bank_closure_strategy\": \"before\",\n      \"remote_id\": \"remote_123\",\n      \"active\": true\n    }\n  ],\n  \"pricing\": {\n    \"platform_fee\": {\n      \"amount\": 1734,\n      \"currency_code\": \"USD\"\n    }\n  },\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b067df3c-347b-4120-9ade-515311ff2fe0",
+              "name": "Authentication failed or API key missing/invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers",
+                    ":employer_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employer_id",
+                      "description": "(Required) Employer ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dc97a213-5164-4a30-a0b5-eb6860e355fe",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers",
+                    ":employer_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employer_id",
+                      "description": "(Required) Employer ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d1b59e64-ff64-4811-8343-058fe91c13a3",
+          "name": "Update an employer",
+          "request": {
+            "name": "Update an employer",
+            "description": {},
+            "url": {
+              "path": [
+                "employers",
+                ":employer_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employer_id",
+                  "description": "(Required) Employer ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"offers_health_insurance_today\": \"<boolean>\",\n  \"current_health_insurance\": {\n    \"individual_deductible\": \"<integer>\",\n    \"individual_oop_max\": \"<integer>\",\n    \"network_type\": \"<string>\",\n    \"metal_tier\": \"<string>\"\n  },\n  \"coverage_start_date\": \"<date>\",\n  \"pricing\": {\n    \"platform_fee\": {\n      \"amount\": \"<integer>\",\n      \"currency_code\": \"<string>\"\n    }\n  },\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "efec3c78-f475-40d7-9528-470c82aa941e",
+              "name": "Update an employer",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers",
+                    ":employer_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employer_id",
+                      "description": "(Required) Employer ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"offers_health_insurance_today\": \"<boolean>\",\n  \"current_health_insurance\": {\n    \"individual_deductible\": 1500,\n    \"individual_oop_max\": 5000,\n    \"network_type\": \"hmo\",\n    \"metal_tier\": \"silver\"\n  },\n  \"coverage_start_date\": \"<date>\",\n  \"pricing\": {\n    \"platform_fee\": {\n      \"amount\": 3481,\n      \"currency_code\": \"USD\"\n    }\n  },\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"empl_01j2j3smtwx656y2tbqm7ty6gr\",\n  \"onboarding_status\": \"employees_invited\",\n  \"name\": \"string\",\n  \"business_type\": \"string\",\n  \"ein\": \"string\",\n  \"dba\": \"string\",\n  \"address_line1\": \"string\",\n  \"address_line2\": \"string\",\n  \"city\": \"string\",\n  \"state\": \"string\",\n  \"zip\": \"string\",\n  \"phone_number\": \"string\",\n  \"industry\": \"professional_scientific_and_technical_services\",\n  \"lifecycle_events\": [\n    {\n      \"id\": \"lcevent_01j2j3smtwx656y2tbqm7ty6gr\",\n      \"event_type\": \"employees_invited\",\n      \"timestamp\": \"1992-01-30T00:25:40.906Z\"\n    },\n    {\n      \"id\": \"lcevent_01j2j3smtwx656y2tbqm7ty6gr\",\n      \"event_type\": \"employees_invited\",\n      \"timestamp\": \"1967-08-15T00:43:26.770Z\"\n    }\n  ],\n  \"pay_schedules\": [\n    {\n      \"id\": \"paysch_1234\",\n      \"name\": \"Bi-Weekly Payroll\",\n      \"reference_pay_date\": \"2024-07-24\",\n      \"start_date\": \"1999-05-10\",\n      \"end_date\": \"1992-01-04\",\n      \"frequency\": \"bi_weekly\",\n      \"first_day\": 6915,\n      \"second_day\": 6004,\n      \"bank_closure_strategy\": \"before\",\n      \"remote_id\": \"remote_123\",\n      \"active\": false\n    },\n    {\n      \"id\": \"paysch_1234\",\n      \"name\": \"Bi-Weekly Payroll\",\n      \"reference_pay_date\": \"1992-12-15\",\n      \"start_date\": \"1959-05-29\",\n      \"end_date\": \"1973-02-22\",\n      \"frequency\": \"bi_weekly\",\n      \"first_day\": 6978,\n      \"second_day\": 1712,\n      \"bank_closure_strategy\": \"before\",\n      \"remote_id\": \"remote_123\",\n      \"active\": true\n    }\n  ],\n  \"pricing\": {\n    \"platform_fee\": {\n      \"amount\": 1734,\n      \"currency_code\": \"USD\"\n    }\n  },\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "23c70879-8891-484f-a2a1-df6f49a89f7b",
+              "name": "Authentication failed or API key missing/invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers",
+                    ":employer_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employer_id",
+                      "description": "(Required) Employer ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"offers_health_insurance_today\": \"<boolean>\",\n  \"current_health_insurance\": {\n    \"individual_deductible\": 1500,\n    \"individual_oop_max\": 5000,\n    \"network_type\": \"hmo\",\n    \"metal_tier\": \"silver\"\n  },\n  \"coverage_start_date\": \"<date>\",\n  \"pricing\": {\n    \"platform_fee\": {\n      \"amount\": 3481,\n      \"currency_code\": \"USD\"\n    }\n  },\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5134129e-4da4-4352-b8b4-87b74f34b233",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers",
+                    ":employer_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employer_id",
+                      "description": "(Required) Employer ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"offers_health_insurance_today\": \"<boolean>\",\n  \"current_health_insurance\": {\n    \"individual_deductible\": 1500,\n    \"individual_oop_max\": 5000,\n    \"network_type\": \"hmo\",\n    \"metal_tier\": \"silver\"\n  },\n  \"coverage_start_date\": \"<date>\",\n  \"pricing\": {\n    \"platform_fee\": {\n      \"amount\": 3481,\n      \"currency_code\": \"USD\"\n    }\n  },\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://partners.thatchcloud.com/api/partners/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4a37ecd3-9935-4e80-8f18-57745911ef65",
+    "name": "Thatch for Platforms Deductions Employers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Thatch for Platforms is a set of REST APIs and embeddable JavaScript components that let partners bring ICHRA (Individual Coverage Health Reimbursement Arrangement) benefits to their customers. Partners onboard employers, manage employees, run the employer onboarding flow through an embedded iframe, track enrollments and members, model pay schedules, and retrieve payroll deductions. Access is limited to approved partners; contact platforms@thatch.com to set up an account and generate an API key in the Thatch dashboard.\n\nContact Support:\n Name: Thatch for Platforms\n Email: platforms@thatch.com",
+      "type": "text/plain"
+    }
+  }
+}
